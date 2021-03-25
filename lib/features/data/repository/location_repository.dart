@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
+import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/features/data/external/location_adapter.dart';
-import 'package:run_bus/features/data/models/location_model.dart';
+import 'package:run_bus/features/domain/entites/position.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
 
 class LocationRepository implements ILocationRepository {
@@ -9,15 +11,17 @@ class LocationRepository implements ILocationRepository {
   LocationRepository({this.locationAdapter});
 
   @override
-  Future<LocationModel> getCurrentLocation() async {
+  Future<Either<Failure, Location>> getCurrentLocation() async {
     try {
       var res = await locationAdapter.getCurrentPosition();
-      return LocationModel(
-        latitude: res.latitude,
-        longitude: res.longitude,
+      return Right(
+        Location(
+          latitude: res.latitude,
+          longitude: res.longitude,
+        ),
       );
-    } catch (e) {
-      throw DriverException();
+    } on DriverException catch (e) {
+      return Left(ServerFailure(detail: e.error));
     }
   }
 }

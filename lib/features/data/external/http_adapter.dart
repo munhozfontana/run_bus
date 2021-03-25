@@ -88,7 +88,7 @@ class HttpAdapterImpl implements HttpAdapter {
 
 class ResponseAdapter {
   int statusCode;
-  Map body;
+  dynamic body;
   Map header;
   ResponseAdapter({
     this.statusCode,

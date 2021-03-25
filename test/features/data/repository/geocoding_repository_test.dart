@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -22,6 +23,6 @@ void main() {
     when(mockIGeocodingAdapter.coordToAndress(any, any)).thenAnswer((_) =>
         Future.value(GeocodingAdapterResponse()..district = 'anyDistrict'));
     var res = await geocodingRepository.coordToAndress(3.1, 42.2);
-    expect(res, 'anyDistrict');
+    expect(res, isA<Right>());
   });
 }

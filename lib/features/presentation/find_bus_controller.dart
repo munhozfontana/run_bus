@@ -29,9 +29,13 @@ class FindBusController extends ChangeNotifier {
     notifyListeners();
   }
 
+  navigatTo(lat, lng) async {
+    googleMapController.moveCamera(CameraUpdate.newLatLng(LatLng(lat, lng)));
+    notifyListeners();
+  }
+
   void run() async {
     var res = await currentLocationUserUseCase(Params());
-    print(res.getOrElse(() => null));
     res.fold((l) => null, (r) => userLocation = r);
     notifyListeners();
   }
