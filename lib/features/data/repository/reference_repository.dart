@@ -2,8 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
-import 'package:run_bus/features/data/external/http_adapter.dart';
-import 'package:run_bus/features/data/models/reference_model.dart';
+import 'package:run_bus/features/data/external/apis/reference_api.dart';
 import 'package:run_bus/features/domain/entites/reference.dart';
 import 'package:run_bus/features/domain/repositories/reference_repository.dart';
 
@@ -20,26 +19,5 @@ class ReferenceRepository implements IReferenceRepository {
     } on ApiException catch (e) {
       return Left(ServerFailure(detail: e.error));
     }
-  }
-}
-
-abstract class IReferenceApi {
-  Future<ReferenceModel> findReferenceByDistrict(String district);
-}
-
-class ReferenceApi implements IReferenceApi {
-  final HttpAdapter httpAdapter;
-  ReferenceApi({
-    @required this.httpAdapter,
-  });
-
-  @override
-  Future<ReferenceModel> findReferenceByDistrict(String district) async {
-    var res = await httpAdapter.getHttp(
-        'https://www.sistemas.dftrans.df.gov.br/referencia/find/RA : $district');
-    if (res.body.first != null) {
-      return ReferenceModel.fromMap(res.body.first);
-    }
-    return ReferenceModel(descricao: null, sequencialRef: null, tipo: null);
   }
 }
