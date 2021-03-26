@@ -1,0 +1,12 @@
+[
+    {
+        "descricao": "RA : ASA NORTE",
+        "sequencialRef": 24,
+        "tipo": "ra"
+    },
+    {
+        "descricao": "RA : ASA SUL ",
+        "sequencialRef": 26,
+        "tipo": "ra"
+    }
+]

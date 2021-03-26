@@ -6,9 +6,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
+import 'package:run_bus/features/domain/entites/integration_area.dart';
 import 'package:run_bus/features/domain/entites/position.dart';
 import 'package:run_bus/features/domain/entites/reference.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
+import 'package:run_bus/features/domain/repositories/integration_area_repository.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
 import 'package:run_bus/features/domain/repositories/reference_repository.dart';
 import 'package:run_bus/features/domain/usecase/current_location_user_use_case.dart';
@@ -19,12 +21,14 @@ import 'current_location_user_use_case_test.mocks.dart';
   ILocationRepository,
   IGeocodingRepository,
   IReferenceRepository,
+  IIntegrationAreaRepository
 ])
 void main() {
   CurrentLocationUserUseCase currentLocationUser;
   MockILocationRepository mockILocationRepository;
   MockIGeocodingRepository mockIGeocodingRepository;
   MockIReferenceRepository mockIReferenceRepository;
+  MockIIntegrationAreaRepository mockIIntegrationAreaRepository;
   FutureOr<Location> tResponse;
 
   setUp(() {
@@ -32,11 +36,12 @@ void main() {
     mockILocationRepository = MockILocationRepository();
     mockIGeocodingRepository = MockIGeocodingRepository();
     mockIReferenceRepository = MockIReferenceRepository();
+    mockIIntegrationAreaRepository = MockIIntegrationAreaRepository();
     currentLocationUser = CurrentLocationUserUseCase(
-      iLocationRepository: mockILocationRepository,
-      iGeocodingRepository: mockIGeocodingRepository,
-      iReferenceRepository: mockIReferenceRepository,
-    );
+        iLocationRepository: mockILocationRepository,
+        iGeocodingRepository: mockIGeocodingRepository,
+        iReferenceRepository: mockIReferenceRepository,
+        iIntegrationAreaRepository: mockIIntegrationAreaRepository);
   });
   test('should return Right with no erros', () async {
     when(mockILocationRepository.getCurrentLocation())
@@ -47,6 +52,22 @@ void main() {
 
     when(mockIReferenceRepository.findReferenceByDistrict(any))
         .thenAnswer((_) async => Right(Reference()));
+
+    when(mockIIntegrationAreaRepository.findIntegrationArea(any)).thenAnswer(
+      (_) async => Right(
+        List.generate(
+          1,
+          (index) => IntegrationArea(
+              sequencial: 1,
+              modal: '1',
+              descricao: '1',
+              location: List.generate(
+                1,
+                (index) => LocationModel(latitude: 1.2, longitude: 3.1),
+              )),
+        ),
+      ),
+    );
 
     expect(await currentLocationUser(Params()), isA<Right>());
   });

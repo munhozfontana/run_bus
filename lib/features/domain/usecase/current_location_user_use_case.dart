@@ -4,6 +4,7 @@ import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/domain/entites/user_location.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
+import 'package:run_bus/features/domain/repositories/integration_area_repository.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
 import 'package:run_bus/features/domain/repositories/reference_repository.dart';
 
@@ -15,11 +16,13 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
   final ILocationRepository iLocationRepository;
   final IGeocodingRepository iGeocodingRepository;
   final IReferenceRepository iReferenceRepository;
+  final IIntegrationAreaRepository iIntegrationAreaRepository;
 
   CurrentLocationUserUseCase({
     @required this.iLocationRepository,
     @required this.iGeocodingRepository,
     @required this.iReferenceRepository,
+    @required this.iIntegrationAreaRepository,
   });
 
   @override
@@ -32,9 +35,13 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
               location.latitude, location.longitude))
           .getOrElse(() => null);
 
-      var reference =
-          (await iReferenceRepository.findReferenceByDistrict(geocoding));
+      var reference = (await iReferenceRepository
+          .findReferenceByDistrict(geocoding.trim()));
       print(reference);
+
+      var integrationArea =
+          (await iIntegrationAreaRepository.findIntegrationArea(location))
+              .getOrElse(() => null);
 
       return Right(
         UserLocation(

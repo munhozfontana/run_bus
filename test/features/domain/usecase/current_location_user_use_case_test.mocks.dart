@@ -5,6 +5,8 @@
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart'
     as _i3;
+import 'package:run_bus/features/domain/repositories/integration_area_repository.dart'
+    as _i5;
 import 'package:run_bus/features/domain/repositories/location_repository.dart'
     as _i2;
 import 'package:run_bus/features/domain/repositories/reference_repository.dart'
@@ -39,6 +41,16 @@ class MockIGeocodingRepository extends _i1.Mock
 class MockIReferenceRepository extends _i1.Mock
     implements _i4.IReferenceRepository {
   MockIReferenceRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+}
+
+/// A class which mocks [IIntegrationAreaRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIIntegrationAreaRepository extends _i1.Mock
+    implements _i5.IIntegrationAreaRepository {
+  MockIIntegrationAreaRepository() {
     _i1.throwOnMissingStub(this);
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:run_bus/core/error/api_exception.dart';
@@ -80,7 +78,7 @@ class HttpAdapterImpl implements HttpAdapter {
   ResponseAdapter mackObj(http.Response response) {
     return ResponseAdapter(
       statusCode: response.statusCode,
-      body: json.decode(response.body),
+      body: response.body,
       header: response.headers,
     );
   }
@@ -88,7 +86,7 @@ class HttpAdapterImpl implements HttpAdapter {
 
 class ResponseAdapter {
   int statusCode;
-  dynamic body;
+  String body;
   Map header;
   ResponseAdapter({
     this.statusCode,

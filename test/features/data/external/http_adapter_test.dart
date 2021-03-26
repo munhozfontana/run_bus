@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
@@ -23,7 +21,7 @@ void main() {
   setUp(() {
     client = MockClient();
     httpAdapterImpl = HttpAdapterImpl(client: client);
-    anyBody = json.encode({'any_param': 'anyValue'});
+    anyBody = {'any_param': 'anyValue'}.toString();
     anyStatusCode = 200;
     anyUrl = 'ANY_URL';
     anyHeader = <String, String>{'ANY_KEY': 'ANY_VALUE'};
@@ -62,22 +60,22 @@ void main() {
     test('get', () async {
       mockGet();
       var res = await httpAdapterImpl.getHttp(anyUrl, headers: anyHeader);
-      expect(res.body, jsonDecode(anyBody));
+      expect(res.body, anyBody);
     });
     test('put', () async {
       mockPut();
       var res = await httpAdapterImpl.putHttp(anyUrl, headers: anyHeader);
-      expect(res.body, jsonDecode(anyBody));
+      expect(res.body, anyBody);
     });
     test('post', () async {
       mockPost();
       var res = await httpAdapterImpl.postHttp(anyUrl, headers: anyHeader);
-      expect(res.body, jsonDecode(anyBody));
+      expect(res.body, anyBody);
     });
     test('delete', () async {
       mockDelete();
       var res = await httpAdapterImpl.deleteHttp(anyUrl, headers: anyHeader);
-      expect(res.body, jsonDecode(anyBody));
+      expect(res.body, anyBody);
     });
   });
 

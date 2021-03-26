@@ -21,17 +21,17 @@ class _FindBusPageState extends State<FindBusPage> {
     var res = HttpAdapterImpl(client: http.Client()).getHttp(
         'https://www.sistemas.dftrans.df.gov.br/referencia/geojson/ra/21');
 
-    res.then((value) {
-      List<LatLng> list = value.body['geometry']['coordinates'].first.first
-          .map<LatLng>((item) => LatLng(item[1], item[0]))
-          .toList();
+    // res.then((value) {
+    //   List<LatLng> list = value.body['geometry']['coordinates'].first.first
+    //       .map<LatLng>((item) => LatLng(item[1], item[0]))
+    //       .toList();
 
-      Polygon listMark = Polygon(
-        points: list,
-        polygonId: PolygonId('1'),
-      );
-      listMarks.add(listMark);
-    });
+    //   Polygon listMark = Polygon(
+    //     points: list,
+    //     polygonId: PolygonId('1'),
+    //   );
+    //   listMarks.add(listMark);
+    // });
   }
 
   @override
