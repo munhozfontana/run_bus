@@ -7,8 +7,7 @@ import 'package:run_bus/features/data/models/integration_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
 
 abstract class IIntegrationAreaApi {
-  Future<List<IntegrationAreaModel>> findReferenceByLatLng(
-      LocationModel location);
+  Future<List<IntegrationAreaModel>> findIntegrationAreabyLocation();
 }
 
 class IntegrationAreaApi implements IIntegrationAreaApi {
@@ -18,15 +17,14 @@ class IntegrationAreaApi implements IIntegrationAreaApi {
   });
 
   @override
-  Future<List<IntegrationAreaModel>> findReferenceByLatLng(
-      LocationModel location) async {
+  Future<List<IntegrationAreaModel>> findIntegrationAreabyLocation() async {
     try {
       var res = await httpAdapter.getHttp(
           'https://www.sistemas.dftrans.df.gov.br/areaintegracao/geo/areas/wgs');
 
       var body = json.decode(res.body);
 
-      var itemFinal = List.from(body['features']).map((element) {
+      return List.from(body['features']).map((element) {
         return IntegrationAreaModel(
           modal: element['properties']['modal'],
           descricao: element['properties']['descricao'],
@@ -39,9 +37,7 @@ class IntegrationAreaApi implements IIntegrationAreaApi {
           })),
           sequencial: element['properties']['sequencial'],
         );
-      });
-
-      return itemFinal.toList();
+      }).toList();
     } catch (e) {
       throw ApiException();
     }

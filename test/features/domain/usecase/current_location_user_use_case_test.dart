@@ -53,7 +53,7 @@ void main() {
     when(mockIReferenceRepository.findReferenceByDistrict(any))
         .thenAnswer((_) async => Right(Reference()));
 
-    when(mockIIntegrationAreaRepository.findIntegrationArea(any)).thenAnswer(
+    when(mockIIntegrationAreaRepository.findIntegrationArea()).thenAnswer(
       (_) async => Right(
         List.generate(
           1,

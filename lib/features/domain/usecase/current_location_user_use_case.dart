@@ -31,22 +31,24 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
       var location = (await iLocationRepository.getCurrentLocation())
           .getOrElse(() => null);
 
-      var geocoding = (await iGeocodingRepository.coordToAndress(
-              location.latitude, location.longitude))
-          .getOrElse(() => null);
+      // var geocoding = (await iGeocodingRepository.coordToAndress(
+      //         location.latitude, location.longitude))
+      //     .getOrElse(() => null);
 
-      var reference = (await iReferenceRepository
-          .findReferenceByDistrict(geocoding.trim()));
-      print(reference);
+      // var reference = (await iReferenceRepository
+      //     .findReferenceByDistrict(geocoding.trim()));
+      // print(reference);
 
-      var integrationArea =
-          (await iIntegrationAreaRepository.findIntegrationArea(location))
-              .getOrElse(() => null);
+      (await iIntegrationAreaRepository.findIntegrationArea()).fold(
+          print,
+          (r) => r.forEach((element) {
+                print('${element.descricao} - ${element.sequencial}');
+              }));
 
       return Right(
         UserLocation(
           location: location,
-          district: geocoding,
+          district: '',
         ),
       );
     } catch (e) {

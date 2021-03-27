@@ -23,7 +23,7 @@ void main() {
   });
 
   test('Sould return Reference with no erros', () async {
-    when(mockIIntegrationAreaApi.findReferenceByLatLng(any))
+    when(mockIIntegrationAreaApi.findIntegrationAreabyLocation())
         .thenAnswer((_) async => List.generate(
             1,
             (index) => IntegrationAreaModel(
@@ -35,20 +35,14 @@ void main() {
                   ),
                   sequencial: 1,
                 )));
-    var res = await integrationAreaRepository.findIntegrationArea(LocationModel(
-      latitude: 3.0,
-      longitude: 3.0,
-    ));
+    var res = await integrationAreaRepository.findIntegrationArea();
     expect(res, isA<Right>());
   });
 
   test('Should Thows ApiExpetion when any erros', () async {
-    when(mockIIntegrationAreaApi.findReferenceByLatLng(any))
+    when(mockIIntegrationAreaApi.findIntegrationAreabyLocation())
         .thenThrow(ApiException());
-    var res = await integrationAreaRepository.findIntegrationArea(LocationModel(
-      latitude: 3.0,
-      longitude: 3.0,
-    ));
+    var res = await integrationAreaRepository.findIntegrationArea();
     expect(res, isA<Left>());
   });
 }

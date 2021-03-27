@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/features/data/external/apis/integration_area.dart';
-import 'package:run_bus/features/data/models/location_model.dart';
 import 'package:run_bus/features/domain/entites/integration_area.dart';
 import 'package:run_bus/features/domain/repositories/integration_area_repository.dart';
 
@@ -13,10 +12,9 @@ class IntegrationAreaRepository implements IIntegrationAreaRepository {
   IntegrationAreaRepository({@required this.iIntegrationAreaApi});
 
   @override
-  Future<Either<Failure, List<IntegrationArea>>> findIntegrationArea(
-      LocationModel location) async {
+  Future<Either<Failure, List<IntegrationArea>>> findIntegrationArea() async {
     try {
-      return Right(await iIntegrationAreaApi.findReferenceByLatLng(location));
+      return Right(await iIntegrationAreaApi.findIntegrationAreabyLocation());
     } on ApiException catch (e) {
       return Left(ServerFailure(detail: e.error));
     }

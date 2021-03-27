@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:run_bus/features/data/external/http_adapter.dart';
 import 'package:run_bus/features/presentation/find_bus_controller.dart';
 
 class FindBusPage extends StatefulWidget {
@@ -18,8 +16,6 @@ class _FindBusPageState extends State<FindBusPage> {
   @override
   void initState() {
     super.initState();
-    var res = HttpAdapterImpl(client: http.Client()).getHttp(
-        'https://www.sistemas.dftrans.df.gov.br/referencia/geojson/ra/21');
 
     // res.then((value) {
     //   List<LatLng> list = value.body['geometry']['coordinates'].first.first
