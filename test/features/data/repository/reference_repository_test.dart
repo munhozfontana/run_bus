@@ -3,13 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/reference_api.dart';
+import 'package:run_bus/features/data/external/adapters/abs_reference.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
 import 'package:run_bus/features/data/repository/reference_repository_impl.dart';
 
 import 'reference_repository_test.mocks.dart';
 
-@GenerateMocks([IReferenceApi])
+@GenerateMocks([IReference])
 void main() {
   ReferenceRepository referenceRepository;
   String tDistrict;

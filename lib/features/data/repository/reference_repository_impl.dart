@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
-import 'package:run_bus/features/data/external/adapters/reference_api.dart';
+import 'package:run_bus/features/data/external/adapters/abs_reference.dart';
 import 'package:run_bus/features/domain/entites/reference.dart';
 import 'package:run_bus/features/domain/repositories/reference_repository.dart';
 
 class ReferenceRepository implements IReferenceRepository {
-  final IReferenceApi iReferenceApi;
+  final IReference iReferenceApi;
 
   ReferenceRepository({@required this.iReferenceApi});
 

@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
-import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_geocoding.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
 
 class GeocodingRepository implements IGeocodingRepository {
-  final IGeocodingAdapter iGeocodingAdapter;
+  final IGeocoding iGeocodingAdapter;
 
   GeocodingRepository({@required this.iGeocodingAdapter});
 

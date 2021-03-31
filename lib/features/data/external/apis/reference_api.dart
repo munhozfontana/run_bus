@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
-import 'package:run_bus/features/data/external/adapters/reference_api.dart';
+import 'package:run_bus/features/data/external/adapters/abs_http.dart';
+import 'package:run_bus/features/data/external/adapters/abs_reference.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
 
-class ReferenceApi implements IReferenceApi {
-  final HttpAdapter httpAdapter;
+class ReferenceApi implements IReference {
+  final IHttp httpAdapter;
   ReferenceApi({
     @required this.httpAdapter,
   });

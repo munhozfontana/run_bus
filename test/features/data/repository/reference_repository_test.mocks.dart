@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/adapters/reference_api.dart'
+import 'package:run_bus/features/data/external/adapters/abs_reference.dart'
     as _i2;
 
 // ignore_for_file: comment_references
@@ -12,7 +12,7 @@ import 'package:run_bus/features/data/external/adapters/reference_api.dart'
 /// A class which mocks [IReferenceApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIReferenceApi extends _i1.Mock implements _i2.IReferenceApi {
+class MockIReferenceApi extends _i1.Mock implements _i2.IReference {
   MockIReferenceApi() {
     _i1.throwOnMissingStub(this);
   }

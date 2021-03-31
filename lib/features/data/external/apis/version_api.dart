@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
-import 'package:run_bus/features/data/external/adapters/version_api.dart';
+import 'package:run_bus/features/data/external/adapters/abs_http.dart';
+import 'package:run_bus/features/data/external/adapters/abs_version.dart';
 
-class VersionApi implements IVersionApi {
-  final HttpAdapter httpAdapter;
+class VersionApi implements IVersion {
+  final IHttp httpAdapter;
   VersionApi({
     @required this.httpAdapter,
   });

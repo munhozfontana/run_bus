@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart'
+import 'package:run_bus/features/data/external/adapters/abs_geocoding.dart'
     as _i2;
 
 // ignore_for_file: comment_references
@@ -12,7 +12,7 @@ import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart'
 /// A class which mocks [IGeocodingAdapter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIGeocodingAdapter extends _i1.Mock implements _i2.IGeocodingAdapter {
+class MockIGeocodingAdapter extends _i1.Mock implements _i2.IGeocoding {
   MockIGeocodingAdapter() {
     _i1.throwOnMissingStub(this);
   }

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
-import 'package:run_bus/features/data/external/adapters/location_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_location.dart';
 import 'package:run_bus/features/data/external/drivers/location_adapter.dart';
 import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 
@@ -13,11 +13,11 @@ import 'location_impl_test.mocks.dart';
 void main() {
   LocationRepository location;
   LocationAdapter mockLocationManager;
-  Future<LocationAdapterResponse> tResponseFromApi;
+  Future<LocationResponse> tResponseFromApi;
 
   setUp(() {
     tResponseFromApi = Future.value(
-      LocationAdapterResponse(latitude: 15.31513, longitude: -13.5513),
+      LocationResponse(latitude: 15.31513, longitude: -13.5513),
     );
     mockLocationManager = MockLocationAdapter();
     location = LocationRepository(

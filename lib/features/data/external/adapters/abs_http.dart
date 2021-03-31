@@ -1,29 +1,29 @@
-abstract class HttpAdapter {
-  Future<ResponseAdapter> getHttp(
+abstract class IHttp {
+  Future<HttpResponse> getHttp(
     String url, {
     Map<String, String> headers,
   });
-  Future<ResponseAdapter> putHttp(
-    String url, {
-    Map<String, String> headers,
-    dynamic body,
-  });
-  Future<ResponseAdapter> postHttp(
+  Future<HttpResponse> putHttp(
     String url, {
     Map<String, String> headers,
     dynamic body,
   });
-  Future<ResponseAdapter> deleteHttp(
+  Future<HttpResponse> postHttp(
+    String url, {
+    Map<String, String> headers,
+    dynamic body,
+  });
+  Future<HttpResponse> deleteHttp(
     String url, {
     Map<String, String> headers,
   });
 }
 
-class ResponseAdapter {
+class HttpResponse {
   int statusCode;
   String body;
   Map header;
-  ResponseAdapter({
+  HttpResponse({
     this.statusCode,
     this.body,
     this.header,

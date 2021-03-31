@@ -1,14 +1,14 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:run_bus/features/data/external/adapters/location_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_location.dart';
 
-class LocationAdapter implements ILocationAdapter {
+class LocationAdapter implements ILocation {
   @override
-  Future<LocationAdapterResponse> getCurrentPosition() async {
+  Future<LocationResponse> getCurrentPosition() async {
     var res = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
 
-    return LocationAdapterResponse(
+    return LocationResponse(
       latitude: res.latitude,
       longitude: res.longitude,
     );

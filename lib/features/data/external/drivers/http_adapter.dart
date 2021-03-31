@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/messages/api_mensages.dart';
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 
-class HttpAdapterImpl implements HttpAdapter {
+class HttpAdapterImpl implements IHttp {
   final http.Client client;
 
   HttpAdapterImpl({@required this.client});
 
   @override
-  Future<ResponseAdapter> deleteHttp(String url,
+  Future<HttpResponse> deleteHttp(String url,
       {Map<String, String> headers}) async {
     try {
       return mackObj(await client.delete(Uri.parse(url), headers: headers));
@@ -20,7 +20,7 @@ class HttpAdapterImpl implements HttpAdapter {
   }
 
   @override
-  Future<ResponseAdapter> getHttp(String url,
+  Future<HttpResponse> getHttp(String url,
       {Map<String, String> headers}) async {
     try {
       return mackObj(await client.get(Uri.parse(url), headers: headers));
@@ -30,7 +30,7 @@ class HttpAdapterImpl implements HttpAdapter {
   }
 
   @override
-  Future<ResponseAdapter> postHttp(String url,
+  Future<HttpResponse> postHttp(String url,
       {Map<String, String> headers, body}) async {
     try {
       return mackObj(
@@ -42,7 +42,7 @@ class HttpAdapterImpl implements HttpAdapter {
   }
 
   @override
-  Future<ResponseAdapter> putHttp(
+  Future<HttpResponse> putHttp(
     String url, {
     Map<String, String> headers,
     dynamic body,
@@ -55,8 +55,8 @@ class HttpAdapterImpl implements HttpAdapter {
     }
   }
 
-  ResponseAdapter mackObj(http.Response response) {
-    return ResponseAdapter(
+  HttpResponse mackObj(http.Response response) {
+    return HttpResponse(
       statusCode: response.statusCode,
       body: response.body,
       header: response.headers,

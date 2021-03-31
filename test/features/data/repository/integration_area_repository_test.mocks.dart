@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/adapters/integration_area.dart'
+import 'package:run_bus/features/data/external/adapters/abs_integration_area.dart'
     as _i2;
 
 // ignore_for_file: comment_references
@@ -12,8 +12,7 @@ import 'package:run_bus/features/data/external/adapters/integration_area.dart'
 /// A class which mocks [IIntegrationAreaApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIIntegrationAreaApi extends _i1.Mock
-    implements _i2.IIntegrationAreaApi {
+class MockIIntegrationAreaApi extends _i1.Mock implements _i2.IIntegrationArea {
   MockIIntegrationAreaApi() {
     _i1.throwOnMissingStub(this);
   }

@@ -3,8 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart'
-    as _i2;
+import 'package:run_bus/features/data/external/adapters/abs_http.dart' as _i2;
 
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
@@ -12,7 +11,7 @@ import 'package:run_bus/features/data/external/adapters/http_adapter.dart'
 /// A class which mocks [HttpAdapter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpAdapter extends _i1.Mock implements _i2.HttpAdapter {
+class MockHttpAdapter extends _i1.Mock implements _i2.IHttp {
   MockHttpAdapter() {
     _i1.throwOnMissingStub(this);
   }

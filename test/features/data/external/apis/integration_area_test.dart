@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 import 'package:run_bus/features/data/external/apis/integration_area.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -22,7 +22,7 @@ void main() {
     test('should return value with no Erros', () async {
       when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
-        return ResponseAdapter(
+        return HttpResponse(
           body: fixture('area_integration_api.json'),
         );
       });

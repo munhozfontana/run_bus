@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/integration_area.dart';
+import 'package:run_bus/features/data/external/adapters/abs_integration_area.dart';
 import 'package:run_bus/features/data/models/integration_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
 import 'package:run_bus/features/data/repository/integration_area_repository_impl.dart';
 
 import 'integration_area_repository_test.mocks.dart';
 
-@GenerateMocks([IIntegrationAreaApi])
+@GenerateMocks([IIntegrationArea])
 void main() {
   IntegrationAreaRepository integrationAreaRepository;
   MockIIntegrationAreaApi mockIIntegrationAreaApi;

@@ -2,13 +2,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 import 'package:run_bus/features/data/external/apis/reference_api.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import 'reference_api_test.mocks.dart';
 
-@GenerateMocks([HttpAdapter])
+@GenerateMocks([IHttp])
 void main() {
   ReferenceApi areaIntegrationApi;
   MockHttpAdapter mockHttpAdapter;
@@ -24,7 +24,7 @@ void main() {
     test('should return value with no Erros', () async {
       when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
-        return ResponseAdapter(
+        return HttpResponse(
           body: fixture('referencia_api.json'),
         );
       });
@@ -37,7 +37,7 @@ void main() {
     test('should throws ApiException when body is null', () {
       when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
-        return ResponseAdapter(
+        return HttpResponse(
           body: null,
         );
       });
