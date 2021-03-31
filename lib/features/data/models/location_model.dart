@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
 
 class LocationModel extends Location {
   LocationModel({

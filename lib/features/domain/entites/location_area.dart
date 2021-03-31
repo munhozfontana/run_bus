@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
 
-class IntegrationArea extends Equatable {
+class LocationArea extends Equatable {
   final int sequencial;
   final String modal;
   final String descricao;
   final List<Location> location;
 
-  IntegrationArea({
+  LocationArea({
     @required this.sequencial,
     @required this.modal,
     @required this.descricao,

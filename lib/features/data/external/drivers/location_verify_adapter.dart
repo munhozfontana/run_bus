@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:poly/poly.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/core/utils.dart';
-import 'package:run_bus/features/domain/entites/integration_area.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
 
 abstract class ILocationVerifyAdapter {
   bool isInside(List<Location> listLocations, Location location);
-  IntegrationArea neaestPoint(
-      List<IntegrationArea> integrationArea, Location resLocation);
+  LocationArea neaestPoint(
+      List<LocationArea> locationArea, Location resLocation);
 }
 
 class LocationVerifyAdapter implements ILocationVerifyAdapter {
@@ -28,13 +28,13 @@ class LocationVerifyAdapter implements ILocationVerifyAdapter {
   }
 
   @override
-  IntegrationArea neaestPoint(
-      List<IntegrationArea> integrationArea, Location resLocation) {
-    if (integrationArea.isEmpty) {
+  LocationArea neaestPoint(
+      List<LocationArea> locationArea, Location resLocation) {
+    if (locationArea.isEmpty) {
       throw DriverException();
     }
 
-    var list = integrationArea
+    var list = locationArea
         .map((e) => {
               e.sequencial: {
                 'lat': e.location.first.latitude,
@@ -55,7 +55,7 @@ class LocationVerifyAdapter implements ILocationVerifyAdapter {
     }).toList()
           ..sort((a, b) => a['value'].compareTo(b['value']));
 
-    return integrationArea
+    return locationArea
         .firstWhere((element) => element.sequencial == list.first['cod']);
   }
 }

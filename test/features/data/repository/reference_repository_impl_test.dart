@@ -7,17 +7,17 @@ import 'package:run_bus/features/data/external/adapters/abs_reference.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
 import 'package:run_bus/features/data/repository/reference_repository_impl.dart';
 
-import 'reference_repository_test.mocks.dart';
+import 'reference_repository_impl_test.mocks.dart';
 
 @GenerateMocks([IReference])
 void main() {
   ReferenceRepository referenceRepository;
   String tDistrict;
   ReferenceModel tResponse;
-  MockIReferenceApi mockIReferenceApi;
+  IReference mockIReferenceApi;
 
   setUp(() {
-    mockIReferenceApi = MockIReferenceApi();
+    mockIReferenceApi = MockIReference();
     tResponse = ReferenceModel(
       descricao: 'any',
       sequencialRef: 1,

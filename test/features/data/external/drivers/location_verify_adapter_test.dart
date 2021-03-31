@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
-import 'package:run_bus/features/domain/entites/integration_area.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
 
 void main() {
   LocationVerifyAdapter locationVerifyAdapter;
@@ -43,8 +43,8 @@ void main() {
   });
   group('neaestPoint', () {
     test('should return near point', () {
-      List<IntegrationArea> integrationArea = [
-        IntegrationArea(
+      List<LocationArea> integrationArea = [
+        LocationArea(
           descricao: '0',
           location: listLocations.map((e) {
             return Location(
@@ -53,7 +53,7 @@ void main() {
           modal: '0',
           sequencial: 0,
         ),
-        IntegrationArea(
+        LocationArea(
           descricao: '1',
           location: listLocations,
           modal: '1',

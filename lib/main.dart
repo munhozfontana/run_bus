@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:run_bus/features/data/external/apis/integration_area.dart';
+import 'package:run_bus/features/data/external/apis/integration_area_api.dart';
 import 'package:run_bus/features/data/external/apis/reference_api.dart';
 import 'package:run_bus/features/data/external/drivers/geocoding_adapter.dart';
 import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
 import 'package:run_bus/features/data/external/drivers/location_adapter.dart';
 import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
 import 'package:run_bus/features/data/repository/geocoding_repository_impl.dart';
-import 'package:run_bus/features/data/repository/integration_area_repository_impl.dart';
+import 'package:run_bus/features/data/repository/location_area_repository_impl.dart';
 import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 import 'package:run_bus/features/data/repository/reference_repository_impl.dart';
 import 'package:run_bus/features/domain/usecase/current_location_user_use_case.dart';
@@ -49,9 +49,9 @@ class MyApp extends StatelessWidget {
               iLocationRepository: LocationRepository(
                 locationAdapter: LocationAdapter(),
               ),
-              iIntegrationAreaRepository: IntegrationAreaRepository(
-                iIntegrationAreaApi: IntegrationAreaApi(
-                  httpAdapter: httpAdapterImpl,
+              iLocationAreaRepository: LocationAreaRepository(
+                iLocationAreaApi: LocationAreaApi(
+                  iHttp: httpAdapterImpl,
                 ),
               ),
               iLocationVerifyAdapter: LocationVerifyAdapter(),

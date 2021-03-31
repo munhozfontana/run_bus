@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:run_bus/core/error/failures.dart';
-import 'package:run_bus/features/domain/entites/integration_area.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
 
-abstract class IIntegrationAreaRepository {
-  Future<Either<Failure, List<IntegrationArea>>> findIntegrationArea();
+abstract class ILocationAreaRepository {
+  Future<Either<Failure, List<LocationArea>>> findLocationArea();
 }

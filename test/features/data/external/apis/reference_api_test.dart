@@ -11,10 +11,10 @@ import 'reference_api_test.mocks.dart';
 @GenerateMocks([IHttp])
 void main() {
   ReferenceApi areaIntegrationApi;
-  MockHttpAdapter mockHttpAdapter;
+  IHttp mockHttpAdapter;
 
   setUp(() {
-    mockHttpAdapter = MockHttpAdapter();
+    mockHttpAdapter = MockIHttp();
     areaIntegrationApi = ReferenceApi(
       httpAdapter: mockHttpAdapter,
     );

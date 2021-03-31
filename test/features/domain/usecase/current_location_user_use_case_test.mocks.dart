@@ -47,12 +47,12 @@ class MockIReferenceRepository extends _i1.Mock
   }
 }
 
-/// A class which mocks [IIntegrationAreaRepository].
+/// A class which mocks [ILocationAreaRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIIntegrationAreaRepository extends _i1.Mock
-    implements _i5.IIntegrationAreaRepository {
-  MockIIntegrationAreaRepository() {
+class MockILocationAreaRepository extends _i1.Mock
+    implements _i5.ILocationAreaRepository {
+  MockILocationAreaRepository() {
     _i1.throwOnMissingStub(this);
   }
 }

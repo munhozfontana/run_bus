@@ -7,8 +7,8 @@ import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
-import 'package:run_bus/features/domain/entites/integration_area.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
 import 'package:run_bus/features/domain/entites/reference.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
 import 'package:run_bus/features/domain/repositories/integration_area_repository.dart';
@@ -22,7 +22,7 @@ import 'current_location_user_use_case_test.mocks.dart';
   ILocationRepository,
   IGeocodingRepository,
   IReferenceRepository,
-  IIntegrationAreaRepository,
+  ILocationAreaRepository,
   ILocationVerifyAdapter
 ])
 void main() {
@@ -30,7 +30,7 @@ void main() {
   MockILocationRepository mockILocationRepository;
   MockIGeocodingRepository mockIGeocodingRepository;
   MockIReferenceRepository mockIReferenceRepository;
-  MockIIntegrationAreaRepository mockIIntegrationAreaRepository;
+  MockILocationAreaRepository mockILocationAreaRepository;
   MockILocationVerifyAdapter mockILocationVerifyAdapter;
   FutureOr<Location> tResponse;
 
@@ -39,14 +39,14 @@ void main() {
     mockILocationRepository = MockILocationRepository();
     mockIGeocodingRepository = MockIGeocodingRepository();
     mockIReferenceRepository = MockIReferenceRepository();
-    mockIIntegrationAreaRepository = MockIIntegrationAreaRepository();
+    mockILocationAreaRepository = MockILocationAreaRepository();
     mockILocationVerifyAdapter = MockILocationVerifyAdapter();
     currentLocationUser = CurrentLocationUserUseCase(
         iLocationVerifyAdapter: mockILocationVerifyAdapter,
         iLocationRepository: mockILocationRepository,
         iGeocodingRepository: mockIGeocodingRepository,
         iReferenceRepository: mockIReferenceRepository,
-        iIntegrationAreaRepository: mockIIntegrationAreaRepository);
+        iLocationAreaRepository: mockILocationAreaRepository);
   });
   test('should return Right with no erros', () async {
     when(mockILocationRepository.getCurrentLocation())
@@ -60,11 +60,11 @@ void main() {
 
     when(mockILocationVerifyAdapter.isInside(any, any)).thenAnswer((_) => true);
 
-    when(mockIIntegrationAreaRepository.findIntegrationArea()).thenAnswer(
+    when(mockILocationAreaRepository.findLocationArea()).thenAnswer(
       (_) async => Right(
         List.generate(
           1,
-          (index) => IntegrationArea(
+          (index) => LocationArea(
               sequencial: 1,
               modal: '1',
               descricao: '1',

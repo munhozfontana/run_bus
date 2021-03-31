@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/features/data/external/adapters/abs_location.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
 
 class LocationRepository implements ILocationRepository {

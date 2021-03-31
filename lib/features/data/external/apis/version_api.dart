@@ -6,15 +6,15 @@ import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 import 'package:run_bus/features/data/external/adapters/abs_version.dart';
 
 class VersionApi implements IVersion {
-  final IHttp httpAdapter;
+  final IHttp iHttp;
   VersionApi({
-    @required this.httpAdapter,
+    @required this.iHttp,
   });
 
   @override
   Future<int> lastVersion() async {
     try {
-      var res = await httpAdapter
+      var res = await iHttp
           .getHttp('https://www.sistemas.dftrans.df.gov.br/carga/ultima');
       return json.decode(res.body)['data'];
     } catch (e) {

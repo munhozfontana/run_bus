@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:run_bus/features/domain/entites/user_location.dart';
+import 'package:run_bus/features/domain/entites/location_user.dart';
 
-class UserLocationModel extends UserLocation {
-  UserLocationModel({
+class LocationUserModel extends UserLocation {
+  LocationUserModel({
     @required district,
     @required location,
   }) : super(

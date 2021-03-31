@@ -5,15 +5,15 @@ import 'package:mockito/mockito.dart';
 import 'package:run_bus/features/data/external/adapters/abs_geocoding.dart';
 import 'package:run_bus/features/data/repository/geocoding_repository_impl.dart';
 
-import 'geocoding_repository_test.mocks.dart';
+import 'geocoding_repository_impl_test.mocks.dart';
 
 @GenerateMocks([IGeocoding])
 void main() {
   GeocodingRepository geocodingRepository;
-  MockIGeocodingAdapter mockIGeocodingAdapter;
+  IGeocoding mockIGeocodingAdapter;
 
   setUp(() {
-    mockIGeocodingAdapter = MockIGeocodingAdapter();
+    mockIGeocodingAdapter = MockIGeocoding();
     geocodingRepository = GeocodingRepository(
       iGeocodingAdapter: mockIGeocodingAdapter,
     );

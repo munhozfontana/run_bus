@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
 
 class UserLocation extends Equatable {
   final String district;

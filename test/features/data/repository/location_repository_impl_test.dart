@@ -7,7 +7,7 @@ import 'package:run_bus/features/data/external/adapters/abs_location.dart';
 import 'package:run_bus/features/data/external/drivers/location_adapter.dart';
 import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 
-import 'location_impl_test.mocks.dart';
+import 'location_repository_impl_test.mocks.dart';
 
 @GenerateMocks([LocationAdapter])
 void main() {

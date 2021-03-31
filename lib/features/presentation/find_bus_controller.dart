@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:run_bus/core/params/params.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
-import 'package:run_bus/features/domain/entites/user_location.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_user.dart';
 import 'package:run_bus/features/domain/usecase/current_location_user_use_case.dart';
 
 class FindBusController extends ChangeNotifier {

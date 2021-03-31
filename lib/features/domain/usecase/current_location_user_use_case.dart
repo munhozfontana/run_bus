@@ -6,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
-import 'package:run_bus/features/domain/entites/integration_area.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
-import 'package:run_bus/features/domain/entites/user_location.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
+import 'package:run_bus/features/domain/entites/location_user.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
 import 'package:run_bus/features/domain/repositories/integration_area_repository.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
@@ -22,21 +22,21 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
   final ILocationRepository iLocationRepository;
   final IGeocodingRepository iGeocodingRepository;
   final IReferenceRepository iReferenceRepository;
-  final IIntegrationAreaRepository iIntegrationAreaRepository;
+  final ILocationAreaRepository iLocationAreaRepository;
   final ILocationVerifyAdapter iLocationVerifyAdapter;
 
   CurrentLocationUserUseCase({
     @required this.iLocationRepository,
     @required this.iGeocodingRepository,
     @required this.iReferenceRepository,
-    @required this.iIntegrationAreaRepository,
+    @required this.iLocationAreaRepository,
     @required this.iLocationVerifyAdapter,
   });
 
   @override
   Future<Either<Failure, UserLocation>> call(Params params) async {
     var location = iLocationRepository.getCurrentLocation;
-    var integrationArea = iIntegrationAreaRepository.findIntegrationArea;
+    var locationArea = iLocationAreaRepository.findLocationArea;
 
     return (await location()).fold(
       (l) {
@@ -44,7 +44,7 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
         return null;
       },
       (resLocation) async {
-        return (await integrationArea()).fold(
+        return (await locationArea()).fold(
           (l) async {
             return await _findUserLocationByGeocoding(resLocation);
           },
@@ -57,7 +57,7 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
   }
 
   Right<Failure, UserLocation> _findUserLocationByLocationVerify(
-      List<IntegrationArea> r, Location resLocation) {
+      List<LocationArea> r, Location resLocation) {
     var res = iLocationVerifyAdapter.neaestPoint(r, resLocation);
     return Right(
       UserLocation(location: resLocation, district: res.descricao),
@@ -90,7 +90,7 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
     );
   }
 
-  Future<Either<Failure, List<IntegrationArea>>> teste() {
-    return iIntegrationAreaRepository.findIntegrationArea();
+  Future<Either<Failure, List<LocationArea>>> teste() {
+    return iLocationAreaRepository.findLocationArea();
   }
 }

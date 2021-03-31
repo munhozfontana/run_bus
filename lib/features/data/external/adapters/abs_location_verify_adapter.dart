@@ -1,8 +1,8 @@
-import 'package:run_bus/features/domain/entites/integration_area.dart';
-import 'package:run_bus/features/domain/entites/position.dart';
+import 'package:run_bus/features/domain/entites/location.dart';
+import 'package:run_bus/features/domain/entites/location_area.dart';
 
 abstract class ILocationVerify {
   bool isInside(List<Location> listLocations, Location location);
-  IntegrationArea neaestPoint(
-      List<IntegrationArea> integrationArea, Location resLocation);
+  LocationArea neaestPoint(
+      List<LocationArea> locationArea, Location resLocation);
 }
