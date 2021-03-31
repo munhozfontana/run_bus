@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/apis/integration_area.dart'
+import 'package:run_bus/features/data/external/adapters/integration_area.dart'
     as _i2;
 
 // ignore_for_file: comment_references

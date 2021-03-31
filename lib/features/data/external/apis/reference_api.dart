@@ -2,12 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/reference_api.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
-
-abstract class IReferenceApi {
-  Future<ReferenceModel> findReferenceByDistrict(String district);
-}
 
 class ReferenceApi implements IReferenceApi {
   final HttpAdapter httpAdapter;

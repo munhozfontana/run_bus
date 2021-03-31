@@ -1,8 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-
-abstract class ILocationAdapter {
-  Future<LocationAdapterResponse> getCurrentPosition();
-}
+import 'package:run_bus/features/data/external/adapters/location_adapter.dart';
 
 class LocationAdapter implements ILocationAdapter {
   @override
@@ -16,11 +13,4 @@ class LocationAdapter implements ILocationAdapter {
       longitude: res.longitude,
     );
   }
-}
-
-class LocationAdapterResponse {
-  final double latitude;
-  final double longitude;
-
-  LocationAdapterResponse({this.latitude, this.longitude});
 }

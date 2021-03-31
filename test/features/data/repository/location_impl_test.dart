@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
+import 'package:run_bus/features/data/external/adapters/location_adapter.dart';
 import 'package:run_bus/features/data/external/drivers/location_adapter.dart';
 import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 

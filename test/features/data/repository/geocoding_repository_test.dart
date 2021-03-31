@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:run_bus/features/data/external/drivers/geocoding_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart';
 import 'package:run_bus/features/data/repository/geocoding_repository_impl.dart';
 
 import 'geocoding_repository_test.mocks.dart';

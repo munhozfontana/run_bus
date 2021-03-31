@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/failures.dart';
-import 'package:run_bus/features/data/external/apis/version_api.dart';
+import 'package:run_bus/features/data/external/adapters/version_api.dart';
 import 'package:run_bus/features/domain/repositories/version_repository.dart';
 
 class VersionRepository implements IVersionRepository {

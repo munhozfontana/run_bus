@@ -1,9 +1,6 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
-
-abstract class IGeocodingAdapter {
-  Future<GeocodingAdapterResponse> coordToAndress(double lng, double lon);
-}
+import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart';
 
 class GeocodingAdapter implements IGeocodingAdapter {
   @override
@@ -19,10 +16,4 @@ class GeocodingAdapter implements IGeocodingAdapter {
       throw DriverException(error: e.toString());
     }
   }
-}
-
-class GeocodingAdapterResponse {
-  String district;
-  String country;
-  String code;
 }

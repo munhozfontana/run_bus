@@ -2,13 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/http_adapter.dart';
+import 'package:run_bus/features/data/external/adapters/integration_area.dart';
 import 'package:run_bus/features/data/models/integration_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
-
-abstract class IIntegrationAreaApi {
-  Future<List<IntegrationAreaModel>> findIntegrationArea();
-}
 
 class IntegrationAreaApi implements IIntegrationAreaApi {
   final HttpAdapter httpAdapter;

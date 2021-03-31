@@ -3,7 +3,8 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/apis/reference_api.dart' as _i2;
+import 'package:run_bus/features/data/external/adapters/reference_api.dart'
+    as _i2;
 
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis

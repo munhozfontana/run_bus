@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/features/data/external/drivers/geocoding_adapter.dart'
+import 'package:run_bus/features/data/external/adapters/geocoding_adapter.dart'
     as _i2;
 
 // ignore_for_file: comment_references
