@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/http_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
 
 abstract class IReferenceApi {
@@ -20,11 +20,7 @@ class ReferenceApi implements IReferenceApi {
     try {
       var res = await httpAdapter.getHttp(
           'https://www.sistemas.dftrans.df.gov.br/referencia/find/RA : $district');
-      if (res.body != null) {
-        return ReferenceModel.fromMap(json.decode(res.body).first);
-      } else {
-        throw ApiException();
-      }
+      return ReferenceModel.fromMap(json.decode(res.body).first);
     } catch (e) {
       throw ApiException();
     }

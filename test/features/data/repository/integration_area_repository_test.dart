@@ -6,7 +6,7 @@ import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/features/data/external/apis/integration_area.dart';
 import 'package:run_bus/features/data/models/integration_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
-import 'package:run_bus/features/data/repository/integration_area_repository.dart';
+import 'package:run_bus/features/data/repository/integration_area_repository_impl.dart';
 
 import 'integration_area_repository_test.mocks.dart';
 
@@ -23,7 +23,7 @@ void main() {
   });
 
   test('Sould return Reference with no erros', () async {
-    when(mockIIntegrationAreaApi.findIntegrationAreabyLocation())
+    when(mockIIntegrationAreaApi.findIntegrationArea())
         .thenAnswer((_) async => List.generate(
             1,
             (index) => IntegrationAreaModel(
@@ -40,7 +40,7 @@ void main() {
   });
 
   test('Should Thows ApiExpetion when any erros', () async {
-    when(mockIIntegrationAreaApi.findIntegrationAreabyLocation())
+    when(mockIIntegrationAreaApi.findIntegrationArea())
         .thenThrow(ApiException());
     var res = await integrationAreaRepository.findIntegrationArea();
     expect(res, isA<Left>());

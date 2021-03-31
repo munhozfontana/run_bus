@@ -2,22 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/http_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
 import 'package:run_bus/features/data/models/integration_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
 
 abstract class IIntegrationAreaApi {
-  Future<List<IntegrationAreaModel>> findIntegrationAreabyLocation();
+  Future<List<IntegrationAreaModel>> findIntegrationArea();
 }
 
 class IntegrationAreaApi implements IIntegrationAreaApi {
   final HttpAdapter httpAdapter;
+
   IntegrationAreaApi({
     @required this.httpAdapter,
   });
 
   @override
-  Future<List<IntegrationAreaModel>> findIntegrationAreabyLocation() async {
+  Future<List<IntegrationAreaModel>> findIntegrationArea() async {
     try {
       var res = await httpAdapter.getHttp(
           'https://www.sistemas.dftrans.df.gov.br/areaintegracao/geo/areas/wgs');

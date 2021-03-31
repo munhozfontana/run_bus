@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/params/params.dart';
+import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
 import 'package:run_bus/features/domain/entites/integration_area.dart';
 import 'package:run_bus/features/domain/entites/position.dart';
@@ -21,7 +22,8 @@ import 'current_location_user_use_case_test.mocks.dart';
   ILocationRepository,
   IGeocodingRepository,
   IReferenceRepository,
-  IIntegrationAreaRepository
+  IIntegrationAreaRepository,
+  ILocationVerifyAdapter
 ])
 void main() {
   CurrentLocationUserUseCase currentLocationUser;
@@ -29,6 +31,7 @@ void main() {
   MockIGeocodingRepository mockIGeocodingRepository;
   MockIReferenceRepository mockIReferenceRepository;
   MockIIntegrationAreaRepository mockIIntegrationAreaRepository;
+  MockILocationVerifyAdapter mockILocationVerifyAdapter;
   FutureOr<Location> tResponse;
 
   setUp(() {
@@ -37,7 +40,9 @@ void main() {
     mockIGeocodingRepository = MockIGeocodingRepository();
     mockIReferenceRepository = MockIReferenceRepository();
     mockIIntegrationAreaRepository = MockIIntegrationAreaRepository();
+    mockILocationVerifyAdapter = MockILocationVerifyAdapter();
     currentLocationUser = CurrentLocationUserUseCase(
+        iLocationVerifyAdapter: mockILocationVerifyAdapter,
         iLocationRepository: mockILocationRepository,
         iGeocodingRepository: mockIGeocodingRepository,
         iReferenceRepository: mockIReferenceRepository,
@@ -52,6 +57,8 @@ void main() {
 
     when(mockIReferenceRepository.findReferenceByDistrict(any))
         .thenAnswer((_) async => Right(Reference()));
+
+    when(mockILocationVerifyAdapter.isInside(any, any)).thenAnswer((_) => true);
 
     when(mockIIntegrationAreaRepository.findIntegrationArea()).thenAnswer(
       (_) async => Right(

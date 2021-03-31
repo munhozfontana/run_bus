@@ -14,7 +14,7 @@ class IntegrationAreaRepository implements IIntegrationAreaRepository {
   @override
   Future<Either<Failure, List<IntegrationArea>>> findIntegrationArea() async {
     try {
-      return Right(await iIntegrationAreaApi.findIntegrationAreabyLocation());
+      return Right(await iIntegrationAreaApi.findIntegrationArea());
     } on ApiException catch (e) {
       return Left(ServerFailure(detail: e.error));
     }

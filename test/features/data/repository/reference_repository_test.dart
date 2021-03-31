@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/features/data/external/apis/reference_api.dart';
 import 'package:run_bus/features/data/models/reference_model.dart';
-import 'package:run_bus/features/data/repository/reference_repository.dart';
+import 'package:run_bus/features/data/repository/reference_repository_impl.dart';
 
 import 'reference_repository_test.mocks.dart';
 

@@ -11,23 +11,9 @@ class FindBusPage extends StatefulWidget {
 }
 
 class _FindBusPageState extends State<FindBusPage> {
-  Set<Polygon> listMarks = Set<Polygon>();
-
   @override
   void initState() {
     super.initState();
-
-    // res.then((value) {
-    //   List<LatLng> list = value.body['geometry']['coordinates'].first.first
-    //       .map<LatLng>((item) => LatLng(item[1], item[0]))
-    //       .toList();
-
-    //   Polygon listMark = Polygon(
-    //     points: list,
-    //     polygonId: PolygonId('1'),
-    //   );
-    //   listMarks.add(listMark);
-    // });
   }
 
   @override
@@ -35,22 +21,32 @@ class _FindBusPageState extends State<FindBusPage> {
     return Scaffold(
       body: Consumer<FindBusController>(
         builder: (context, value, child) {
-          return GoogleMap(
-            polygons: listMarks,
-            onMapCreated: value.onMapCreate,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(
-                37.42796133580664,
-                -122.085749655962,
+          return Stack(
+            children: [
+              GoogleMap(
+                onTap: print,
+                polygons: value.list,
+                onMapCreated: value.onMapCreate,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(
+                    37.42796133580664,
+                    -122.085749655962,
+                  ),
+                  zoom: 16,
+                ),
               ),
-              zoom: 16,
-            ),
+              Center(
+                child: Text(value?.userLocation?.district),
+              )
+            ],
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Provider.of<FindBusController>(context, listen: false).changeMap();
+          Provider.of<FindBusController>(context, listen: false)
+            ..changeMap()
+            ..teste();
         },
         child: Icon(Icons.add),
       ),

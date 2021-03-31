@@ -3,6 +3,8 @@
 // Do not manually edit this file.
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart'
+    as _i6;
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart'
     as _i3;
 import 'package:run_bus/features/domain/repositories/integration_area_repository.dart'
@@ -51,6 +53,16 @@ class MockIReferenceRepository extends _i1.Mock
 class MockIIntegrationAreaRepository extends _i1.Mock
     implements _i5.IIntegrationAreaRepository {
   MockIIntegrationAreaRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+}
+
+/// A class which mocks [ILocationVerifyAdapter].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockILocationVerifyAdapter extends _i1.Mock
+    implements _i6.ILocationVerifyAdapter {
+  MockILocationVerifyAdapter() {
     _i1.throwOnMissingStub(this);
   }
 }
