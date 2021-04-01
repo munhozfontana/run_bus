@@ -1,5 +1,5 @@
 class DriverException implements Exception {
-  final String error;
+  final String? error;
 
   DriverException({this.error});
 }

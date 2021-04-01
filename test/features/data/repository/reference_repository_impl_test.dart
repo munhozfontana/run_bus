@@ -11,10 +11,10 @@ import 'reference_repository_impl_test.mocks.dart';
 
 @GenerateMocks([IReference])
 void main() {
-  ReferenceRepository referenceRepository;
-  String tDistrict;
-  ReferenceModel tResponse;
-  IReference mockIReferenceApi;
+  late ReferenceRepository referenceRepository;
+  String? tDistrict;
+  ReferenceModel? tResponse;
+  IReference? mockIReferenceApi;
 
   setUp(() {
     mockIReferenceApi = MockIReference();
@@ -27,14 +27,14 @@ void main() {
     referenceRepository = ReferenceRepository(iReferenceApi: mockIReferenceApi);
   });
   test('Sould return Reference with no erros', () async {
-    when(mockIReferenceApi.findReferenceByDistrict(any))
-        .thenAnswer((_) async => tResponse);
+    when(mockIReferenceApi!.findReferenceByDistrict(any))
+        .thenAnswer(((_) async => tResponse!));
     var res = await referenceRepository.findReferenceByDistrict(tDistrict);
     expect(res, isA<Right>());
   });
 
   test('Should Thows ApiExpetion when any erros', () async {
-    when(mockIReferenceApi.findReferenceByDistrict(any))
+    when(mockIReferenceApi!.findReferenceByDistrict(any))
         .thenThrow(ApiException());
     var res = await referenceRepository.findReferenceByDistrict(tDistrict);
     expect(res, isA<Left>());

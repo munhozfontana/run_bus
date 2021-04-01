@@ -3,8 +3,8 @@ abstract class ILocation {
 }
 
 class LocationResponse {
-  final double latitude;
-  final double longitude;
+  final double? latitude;
+  final double? longitude;
 
   LocationResponse({this.latitude, this.longitude});
 }

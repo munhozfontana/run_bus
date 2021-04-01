@@ -10,20 +10,20 @@ import 'version_repository_impl_test.mocks.dart';
 
 @GenerateMocks([IVersion])
 void main() {
-  VersionRepository versionRepository;
-  IVersion mockIVersion;
+  late VersionRepository versionRepository;
+  IVersion? mockIVersion;
   setUp(() {
     mockIVersion = MockIVersion();
     versionRepository = VersionRepository(iVersion: mockIVersion);
   });
   test('Sould return Version with no erros', () async {
-    when(mockIVersion.lastVersion()).thenAnswer((_) async => 1615433770891);
+    when(mockIVersion!.lastVersion()).thenAnswer((_) async => 1615433770891);
     var res = await versionRepository.lastVersion();
     expect(res, isA<Right>());
   });
 
   test('Should Thows ApiExpetion when any erros', () async {
-    when(mockIVersion.lastVersion()).thenThrow(ApiException);
+    when(mockIVersion!.lastVersion()).thenThrow(ApiException);
     var res = await versionRepository.lastVersion();
     expect(res, isA<Left>());
   });

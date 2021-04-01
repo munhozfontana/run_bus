@@ -9,8 +9,8 @@ import 'geocoding_repository_impl_test.mocks.dart';
 
 @GenerateMocks([IGeocoding])
 void main() {
-  GeocodingRepository geocodingRepository;
-  IGeocoding mockIGeocodingAdapter;
+  late GeocodingRepository geocodingRepository;
+  IGeocoding? mockIGeocodingAdapter;
 
   setUp(() {
     mockIGeocodingAdapter = MockIGeocoding();
@@ -20,7 +20,7 @@ void main() {
   });
 
   test('should return Right with no erros', () async {
-    when(mockIGeocodingAdapter.coordToAndress(any, any)).thenAnswer(
+    when(mockIGeocodingAdapter!.coordToAndress(any, any)).thenAnswer(
         (_) => Future.value(GeocodingResponse()..district = 'anyDistrict'));
     var res = await geocodingRepository.coordToAndress(3.1, 42.2);
     expect(res, isA<Right>());

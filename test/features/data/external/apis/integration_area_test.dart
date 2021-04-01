@@ -8,8 +8,8 @@ import '../../../../fixtures/fixture_reader.dart';
 import 'reference_api_test.mocks.dart';
 
 void main() {
-  LocationAreaApi areaIntegrationApi;
-  IHttp mockIHttp;
+  late LocationAreaApi areaIntegrationApi;
+  IHttp? mockIHttp;
 
   setUp(() {
     mockIHttp = MockIHttp();
@@ -20,7 +20,7 @@ void main() {
 
   group('method findReferenceByLatLng', () {
     test('should return value with no Erros', () async {
-      when(mockIHttp.getHttp(any, headers: anyNamed('headers')))
+      when(mockIHttp!.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
         return HttpResponse(
           body: fixture('area_integration_api.json'),
@@ -33,7 +33,7 @@ void main() {
     });
 
     test('should throws throws ApiException', () {
-      when(mockIHttp.getHttp(any, headers: anyNamed('headers')))
+      when(mockIHttp!.getHttp(any, headers: anyNamed('headers')))
           .thenThrow(Exception());
 
       var res = areaIntegrationApi.findLocationArea();

@@ -5,8 +5,8 @@ import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/entites/location_area.dart';
 
 void main() {
-  LocationVerifyAdapter locationVerifyAdapter;
-  List<Location> listLocations;
+  late LocationVerifyAdapter locationVerifyAdapter;
+  List<Location>? listLocations;
 
   setUp(() {
     listLocations = [
@@ -26,7 +26,7 @@ void main() {
     test('should return location inside ranger', () {
       expect(
           locationVerifyAdapter.isInside(
-            listLocations,
+            listLocations!,
             Location(latitude: 1, longitude: 2),
           ),
           isTrue);
@@ -35,7 +35,7 @@ void main() {
     test('should return location outside ranger', () {
       expect(
           locationVerifyAdapter.isInside(
-            listLocations,
+            listLocations!,
             Location(latitude: 6, longitude: 2),
           ),
           isFalse);
@@ -46,9 +46,9 @@ void main() {
       List<LocationArea> integrationArea = [
         LocationArea(
           descricao: '0',
-          location: listLocations.map((e) {
+          location: listLocations!.map((e) {
             return Location(
-                latitude: e.latitude + 30, longitude: e.longitude + 30);
+                latitude: e.latitude! + 30, longitude: e.longitude! + 30);
           }).toList(),
           modal: '0',
           sequencial: 0,

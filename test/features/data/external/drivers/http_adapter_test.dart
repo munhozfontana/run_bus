@@ -9,14 +9,14 @@ import 'http_adapter_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
-  HttpAdapterImpl httpAdapterImpl;
-  http.Client client;
-  http.Response anyResponse;
+  late HttpAdapterImpl httpAdapterImpl;
+  http.Client? client;
+  http.Response? anyResponse;
   //PARAMS
-  String anyUrl;
-  String anyBody;
+  late String anyUrl;
+  String? anyBody;
   int anyStatusCode;
-  Map<String, String> anyHeader;
+  Map<String, String>? anyHeader;
 
   setUp(() {
     client = MockClient();
@@ -26,33 +26,33 @@ void main() {
     anyUrl = 'ANY_URL';
     anyHeader = <String, String>{'ANY_KEY': 'ANY_VALUE'};
     anyResponse = http.Response(
-      anyBody,
+      anyBody!,
       anyStatusCode,
     );
   });
 
   // mocks
   void mockGet() {
-    when(client.get(any, headers: anyHeader)).thenAnswer(
-      (_) async => anyResponse,
+    when(client!.get(Uri.parse(anyUrl), headers: anyHeader)).thenAnswer(
+      ((_) async => anyResponse!),
     );
   }
 
   void mockPut() {
-    when(client.put(any, headers: anyHeader)).thenAnswer(
-      (_) async => anyResponse,
+    when(client!.put(Uri.parse(anyUrl), headers: anyHeader)).thenAnswer(
+      ((_) async => anyResponse!),
     );
   }
 
   void mockPost() {
-    when(client.post(any, headers: anyHeader)).thenAnswer(
-      (_) async => anyResponse,
+    when(client!.post(Uri.parse(anyUrl), headers: anyHeader)).thenAnswer(
+      ((_) async => anyResponse!),
     );
   }
 
   void mockDelete() {
-    when(client.delete(any, headers: anyHeader)).thenAnswer(
-      (_) async => anyResponse,
+    when(client!.delete(Uri.parse(anyUrl), headers: anyHeader)).thenAnswer(
+      ((_) async => anyResponse!),
     );
   }
 

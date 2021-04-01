@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:run_bus/features/domain/entites/reference.dart';
 
 class ReferenceModel extends Reference {
   ReferenceModel({
-    @required descricao,
-    @required sequencialRef,
-    @required tipo,
+    required descricao,
+    required sequencialRef,
+    required tipo,
   }) : super(
           descricao: descricao,
           sequencialRef: sequencialRef,

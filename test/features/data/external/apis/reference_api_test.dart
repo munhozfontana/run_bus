@@ -10,8 +10,8 @@ import 'reference_api_test.mocks.dart';
 
 @GenerateMocks([IHttp])
 void main() {
-  ReferenceApi areaIntegrationApi;
-  IHttp mockHttpAdapter;
+  late ReferenceApi areaIntegrationApi;
+  IHttp? mockHttpAdapter;
 
   setUp(() {
     mockHttpAdapter = MockIHttp();
@@ -22,7 +22,7 @@ void main() {
 
   group('method findReferenceByLatLng', () {
     test('should return value with no Erros', () async {
-      when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
+      when(mockHttpAdapter!.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
         return HttpResponse(
           body: fixture('referencia_api.json'),
@@ -35,7 +35,7 @@ void main() {
     });
 
     test('should throws ApiException when body is null', () {
-      when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
+      when(mockHttpAdapter!.getHttp(any, headers: anyNamed('headers')))
           .thenAnswer((_) async {
         return HttpResponse(
           body: null,
@@ -48,7 +48,7 @@ void main() {
     });
 
     test('should throws ApiException when having any Erros', () {
-      when(mockHttpAdapter.getHttp(any, headers: anyNamed('headers')))
+      when(mockHttpAdapter!.getHttp(any, headers: anyNamed('headers')))
           .thenThrow(Exception());
 
       var res = areaIntegrationApi.findReferenceByDistrict('any');

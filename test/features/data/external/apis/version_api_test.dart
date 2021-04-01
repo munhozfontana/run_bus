@@ -8,8 +8,8 @@ import '../../../../fixtures/fixture_reader.dart';
 import 'reference_api_test.mocks.dart';
 
 void main() {
-  VersionApi versionApi;
-  IHttp mockIHttp;
+  late VersionApi versionApi;
+  IHttp? mockIHttp;
 
   setUp(() {
     mockIHttp = MockIHttp();
@@ -17,13 +17,13 @@ void main() {
   });
 
   test('should return some version', () async {
-    when(mockIHttp.getHttp(any))
+    when(mockIHttp!.getHttp(any))
         .thenAnswer((_) async => HttpResponse(body: fixture('carga.json')));
     expect(await versionApi.lastVersion(), 1615433770891);
   });
 
   test('should thows ApiException when thows any erros', () {
-    when(mockIHttp.getHttp(any)).thenThrow(Exception);
+    when(mockIHttp!.getHttp(any)).thenThrow(Exception);
     expect(versionApi.lastVersion(), throwsA(isA<ApiException>()));
   });
 }

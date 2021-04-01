@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:run_bus/features/presentation/find_bus_controller.dart';
 
 class FindBusPage extends StatefulWidget {
-  const FindBusPage({Key key}) : super(key: key);
+  const FindBusPage({Key? key}) : super(key: key);
 
   @override
   _FindBusPageState createState() => _FindBusPageState();
@@ -36,7 +36,7 @@ class _FindBusPageState extends State<FindBusPage> {
                 ),
               ),
               Center(
-                child: Text(value?.userLocation?.district),
+                child: Text(value.userLocation.district!),
               )
             ],
           );

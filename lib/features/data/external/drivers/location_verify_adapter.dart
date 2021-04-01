@@ -1,27 +1,41 @@
-import 'dart:math';
-
-import 'package:poly/poly.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/core/utils.dart';
 import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/entites/location_area.dart';
 
 abstract class ILocationVerifyAdapter {
-  bool isInside(List<Location> listLocations, Location location);
+  bool isInside(List<Location>? listLocations, Location? location);
   LocationArea neaestPoint(
       List<LocationArea> locationArea, Location resLocation);
 }
 
 class LocationVerifyAdapter implements ILocationVerifyAdapter {
   @override
-  bool isInside(List<Location> listLocations, Location location) {
+  bool isInside(List<Location>? points, Location? location) {
     try {
-      Polygon testPolygon = Polygon(listLocations
-          .map((element) => Point(element.latitude, element.longitude))
-          .toList());
+      num ax = 0;
+      num ay = 0;
+      num bx = points![points.length - 1].latitude! - location!.latitude!;
+      num by = points[points.length - 1].longitude! - location.longitude!;
+      int depth = 0;
 
-      return testPolygon
-          .isPointInside(Point(location.latitude, location.longitude));
+      for (int i = 0; i < points.length; i++) {
+        ax = bx;
+        ay = by;
+        bx = points[i].latitude! - location.latitude!;
+        by = points[i].longitude! - location.longitude!;
+
+        if (ay < 0 && by < 0) continue;
+        if (ay > 0 && by > 0) continue;
+        if (ax < 0 && bx < 0) continue;
+
+        num lx = ax - ay * (bx - ax) / (by - ay);
+
+        if (lx == 0) return true;
+        if (lx > 0) depth++;
+      }
+
+      return (depth & 1) == 1;
     } catch (e) {
       throw DriverException();
     }
@@ -37,8 +51,8 @@ class LocationVerifyAdapter implements ILocationVerifyAdapter {
     var list = locationArea
         .map((e) => {
               e.sequencial: {
-                'lat': e.location.first.latitude,
-                'lng': e.location.first.longitude
+                'lat': e.location!.first.latitude,
+                'lng': e.location!.first.longitude
               }
             })
         .map((element) {

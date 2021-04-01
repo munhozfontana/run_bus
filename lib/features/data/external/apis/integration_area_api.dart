@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 import 'package:run_bus/features/data/external/adapters/abs_integration_area.dart';
@@ -8,19 +7,19 @@ import 'package:run_bus/features/data/models/location_area_model.dart';
 import 'package:run_bus/features/data/models/location_model.dart';
 
 class LocationAreaApi implements ILocationArea {
-  final IHttp iHttp;
+  final IHttp? iHttp;
 
   LocationAreaApi({
-    @required this.iHttp,
+    required this.iHttp,
   });
 
   @override
   Future<List<LocationAreaModel>> findLocationArea() async {
     try {
-      var res = await iHttp.getHttp(
+      var res = await iHttp!.getHttp(
           'https://www.sistemas.dftrans.df.gov.br/areaintegracao/geo/areas/wgs');
 
-      var body = json.decode(res.body);
+      var body = json.decode(res.body!);
 
       return List.from(body['features']).map((element) {
         return LocationAreaModel(

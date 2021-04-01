@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Reference extends Equatable {
-  final String descricao;
-  final int sequencialRef;
-  final String tipo;
+  final String? descricao;
+  final int? sequencialRef;
+  final String? tipo;
 
   Reference({this.descricao, this.sequencialRef, this.tipo});
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         descricao,
         sequencialRef,
         tipo,
