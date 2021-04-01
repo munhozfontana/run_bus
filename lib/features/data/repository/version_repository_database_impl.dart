@@ -18,7 +18,7 @@ class VersionDatabaseRepository implements IVersionDatabaseRepository {
   }
 
   @override
-  Future<Either<Failure, int>> saveVersion(int? version) async {
+  Future<Either<Failure, void>> saveVersion(int? version) async {
     try {
       return Right(await iVersionDatabase.saveVersion(version));
     } catch (e) {

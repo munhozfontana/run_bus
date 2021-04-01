@@ -3,5 +3,5 @@ abstract class IVersion {
 }
 
 abstract class IVersionDatabase extends IVersion {
-  Future<int> saveVersion(int? version);
+  Future<void> saveVersion(int? version);
 }

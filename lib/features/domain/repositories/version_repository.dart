@@ -6,5 +6,5 @@ abstract class IVersionRepository {
 }
 
 abstract class IVersionDatabaseRepository extends IVersionRepository {
-  Future<Either<Failure, int>> saveVersion(int? version);
+  Future<Either<Failure, void>> saveVersion(int? version);
 }

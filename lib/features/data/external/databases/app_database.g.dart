@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER NOT NULL, `seq` INTEGER NOT NULL, `dat` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER, `sequencial` INTEGER NOT NULL, `createAtMillis` INTEGER NOT NULL, `sequencial` INTEGER, `data` INTEGER, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -96,20 +96,34 @@ class _$AppDatabase extends AppDatabase {
 
 class _$VersionDao extends VersionDao {
   _$VersionDao(this.database, this.changeListener)
-      : _versionModelInsertionAdapter = InsertionAdapter(
+      : _queryAdapter = QueryAdapter(database),
+        _versionModelInsertionAdapter = InsertionAdapter(
             database,
             'VersionModel',
             (VersionModel item) => <String, Object?>{
                   'id': item.id,
-                  'seq': item.seq,
-                  'dat': item.dat
+                  'sequencial': item.sequencial,
+                  'createAtMillis': item.createAtMillis,
+                  'sequencial': item.sequencial,
+                  'data': item.data
                 });
 
   final sqflite.DatabaseExecutor database;
 
   final StreamController<String> changeListener;
 
+  final QueryAdapter _queryAdapter;
+
   final InsertionAdapter<VersionModel> _versionModelInsertionAdapter;
+
+  @override
+  Future<List<VersionModel>> selectLastVersion() async {
+    return _queryAdapter.queryList('SELECT * FROM VersionModel',
+        mapper: (Map<String, Object?> row) => VersionModel(
+            id: row['id'] as int?,
+            sequencial: row['sequencial'] as int,
+            createAtMillis: row['createAtMillis'] as int));
+  }
 
   @override
   Future<void> insertVersion(VersionModel person) async {

@@ -29,9 +29,10 @@ class UpdadeDataOnInitUseCase implements UseCase<Type, Params> {
 
     if (iVersionApi.getOrElse(() => null)! >
         iVersionDatabase.getOrElse(() => null)!) {
-      return iVersionDatabaseRepository!.saveVersion(
+      iVersionDatabaseRepository!.saveVersion(
         iVersionApi.getOrElse(() => null),
       );
+      return Right(iVersionDatabase.getOrElse(() => null));
     } else {
       return iVersionApi;
     }
