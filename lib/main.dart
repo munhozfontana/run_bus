@@ -20,7 +20,7 @@ import 'package:run_bus/features/data/repository/version_repository_database_imp
 import 'package:run_bus/features/data/repository/version_repository_impl.dart';
 import 'package:run_bus/features/domain/usecase/location/current_location_user_use_case.dart';
 import 'package:run_bus/features/domain/usecase/version/has_upades_updades_use_case.dart';
-import 'package:run_bus/features/domain/usecase/version/take_last_version.dart';
+import 'package:run_bus/features/domain/usecase/version/take_last_version_use_case.dart';
 import 'package:run_bus/features/domain/usecase/version/updade_data_use_case.dart';
 import 'package:run_bus/features/presentation/find_bus_controller.dart';
 import 'package:run_bus/features/presentation/find_bus_page.dart';
