@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -51,39 +50,5 @@ class FindBusController extends ChangeNotifier {
 
   initData() {
     updadeDataOnInitUseCase(Params());
-  }
-
-  teste() async {
-    var lala = await currentLocationUserUseCase.teste();
-    List colors = [
-      Colors.red,
-      Colors.green,
-      Colors.yellow,
-      Colors.black,
-      Colors.amber,
-      Colors.blueAccent,
-      Colors.purple,
-      Colors.teal,
-      Colors.deepPurple
-    ];
-    lala.fold(
-      (l) => null,
-      (r) {
-        list = r
-            .map(
-              (e) => Polygon(
-                polygonId: PolygonId(e.descricao!),
-                onTap: () => print(e),
-                points: e.location!
-                    .map((e) => LatLng(e.latitude!, e.longitude!))
-                    .toList(),
-              ).copyWith(
-                  strokeColorParam: colors[Random().nextInt(colors.length)]),
-            )
-            .toSet();
-
-        notifyListeners();
-      },
-    );
   }
 }

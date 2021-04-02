@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER, `sequencial` INTEGER NOT NULL, `createAtMillis` INTEGER NOT NULL, `sequencial` INTEGER, `data` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER, `createAtMillis` INTEGER NOT NULL, `sequencial` INTEGER, `data` INTEGER, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -102,7 +102,6 @@ class _$VersionDao extends VersionDao {
             'VersionModel',
             (VersionModel item) => <String, Object?>{
                   'id': item.id,
-                  'sequencial': item.sequencial,
                   'createAtMillis': item.createAtMillis,
                   'sequencial': item.sequencial,
                   'data': item.data
@@ -117,11 +116,11 @@ class _$VersionDao extends VersionDao {
   final InsertionAdapter<VersionModel> _versionModelInsertionAdapter;
 
   @override
-  Future<List<VersionModel>> selectLastVersion() async {
+  Future<List<VersionModel?>> selectLastVersion() async {
     return _queryAdapter.queryList('SELECT * FROM VersionModel',
         mapper: (Map<String, Object?> row) => VersionModel(
             id: row['id'] as int?,
-            sequencial: row['sequencial'] as int,
+            sequencial: row['sequencial'] as int?,
             createAtMillis: row['createAtMillis'] as int));
   }
 

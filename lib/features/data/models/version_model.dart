@@ -6,14 +6,11 @@ class VersionModel extends Version {
   @primaryKey
   final int? id;
 
-  final int sequencial;
   final int createAtMillis;
 
   VersionModel({
     this.id,
-    required this.sequencial,
+    int? sequencial,
     required this.createAtMillis,
-  }) : super(
-          sequencial: sequencial,
-        );
+  }) : super(sequencial: sequencial);
 }

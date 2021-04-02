@@ -10,17 +10,3 @@ class ApiAdaptertException implements ApiException {
 
   ApiAdaptertException({this.error});
 }
-
-class ApiAdaptertParseException implements ApiException {
-  @override
-  final String? error;
-
-  ApiAdaptertParseException({this.error});
-}
-
-class ApiInternetException implements ApiException {
-  @override
-  final String? error;
-
-  ApiInternetException({this.error});
-}

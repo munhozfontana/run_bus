@@ -10,31 +10,34 @@ abstract class UseCase<Type, Params> {
 }
 
 class UpdadeDataOnInitUseCase implements UseCase<Type, Params> {
-  final IVersionRepository iVersionRepositoryApi;
-  final IVersionDatabaseRepository? iVersionDatabaseRepository;
+  final IVersionRepository apiRepository;
+  final IVersionDatabaseRepository dbRepository;
 
   UpdadeDataOnInitUseCase({
-    required this.iVersionRepositoryApi,
-    required this.iVersionDatabaseRepository,
+    required this.apiRepository,
+    required this.dbRepository,
   });
 
   @override
   Future<Either<Failure, int?>> call(Params params) async {
-    var iVersionApi = await iVersionRepositoryApi.lastVersion();
-    var iVersionDatabase = await iVersionDatabaseRepository!.lastVersion();
-
-    if (iVersionApi.isLeft() || iVersionDatabase.isLeft()) {
-      return Left(ServerFailure());
-    }
-
-    if (iVersionApi.getOrElse(() => null)! >
-        iVersionDatabase.getOrElse(() => null)!) {
-      iVersionDatabaseRepository!.saveVersion(
-        iVersionApi.getOrElse(() => null),
-      );
-      return Right(iVersionDatabase.getOrElse(() => null));
-    } else {
-      return iVersionApi;
-    }
+    return (await apiRepository.lastVersion()).fold(
+      (fail) => Left(fail),
+      (resApi) async {
+        return (await dbRepository.lastVersion()).fold(
+          (fail) => Left(fail),
+          (resDb) async {
+            if (resApi! > resDb!) {
+              await dbRepository.saveVersion(resApi);
+              return (await dbRepository.lastVersion()).fold(
+                (fail) => Left(fail),
+                (resDb) => Right(resDb),
+              );
+            } else {
+              return Right(resDb);
+            }
+          },
+        );
+      },
+    );
   }
 }
