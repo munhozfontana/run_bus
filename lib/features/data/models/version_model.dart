@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:floor/floor.dart';
 import 'package:run_bus/features/domain/entites/version.dart';
 
@@ -6,11 +8,34 @@ class VersionModel extends Version {
   @primaryKey
   final int? id;
 
-  final int createAtMillis;
+  final int? createAtMillis;
 
   VersionModel({
     this.id,
     int? sequencial,
-    required this.createAtMillis,
-  }) : super(sequencial: sequencial);
+    int? data,
+    this.createAtMillis,
+  }) : super(
+          sequencial: sequencial,
+          data: data,
+        );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'sequencial': sequencial,
+      'data': data,
+    };
+  }
+
+  factory VersionModel.fromMap(Map<String, dynamic> map) {
+    return VersionModel(
+      sequencial: map['sequencial'],
+      data: map['data'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory VersionModel.fromJson(String source) =>
+      VersionModel.fromMap(json.decode(source));
 }

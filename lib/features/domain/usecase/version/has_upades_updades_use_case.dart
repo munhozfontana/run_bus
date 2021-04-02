@@ -6,34 +6,30 @@ import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/domain/repositories/version_repository.dart';
 
 abstract class UseCase<Type, Params> {
-  Future<Either<Failure, int?>> call(Params params);
+  Future<Either<Failure, bool?>> call(Params params);
 }
 
-class UpdadeDataOnInitUseCase implements UseCase<Type, Params> {
+class HasUpadesUpdadesUseCase implements UseCase<Type, Params> {
   final IVersionRepository apiRepository;
   final IVersionDatabaseRepository dbRepository;
 
-  UpdadeDataOnInitUseCase({
+  HasUpadesUpdadesUseCase({
     required this.apiRepository,
     required this.dbRepository,
   });
 
   @override
-  Future<Either<Failure, int?>> call(Params params) async {
+  Future<Either<Failure, bool?>> call(Params params) async {
     return (await apiRepository.lastVersion()).fold(
       (fail) => Left(fail),
       (resApi) async {
         return (await dbRepository.lastVersion()).fold(
           (fail) => Left(fail),
           (resDb) async {
-            if (resApi! > resDb!) {
-              await dbRepository.saveVersion(resApi);
-              return (await dbRepository.lastVersion()).fold(
-                (fail) => Left(fail),
-                (resDb) => Right(resDb),
-              );
+            if (resApi!.sequencial! > resDb!.sequencial!) {
+              return Right(true);
             } else {
-              return Right(resDb);
+              return Right(false);
             }
           },
         );

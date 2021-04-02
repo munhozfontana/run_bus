@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER, `createAtMillis` INTEGER NOT NULL, `sequencial` INTEGER, `data` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `VersionModel` (`id` INTEGER, `createAtMillis` INTEGER, `sequencial` INTEGER, `data` INTEGER, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -121,7 +121,8 @@ class _$VersionDao extends VersionDao {
         mapper: (Map<String, Object?> row) => VersionModel(
             id: row['id'] as int?,
             sequencial: row['sequencial'] as int?,
-            createAtMillis: row['createAtMillis'] as int));
+            data: row['data'] as int?,
+            createAtMillis: row['createAtMillis'] as int?));
   }
 
   @override

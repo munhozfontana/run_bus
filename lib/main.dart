@@ -18,16 +18,18 @@ import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 import 'package:run_bus/features/data/repository/reference_repository_impl.dart';
 import 'package:run_bus/features/data/repository/version_repository_database_impl.dart';
 import 'package:run_bus/features/data/repository/version_repository_impl.dart';
-import 'package:run_bus/features/domain/usecase/current_location_user_use_case.dart';
-import 'package:run_bus/features/domain/usecase/updade_data_on_init_use_case.dart';
+import 'package:run_bus/features/domain/usecase/location/current_location_user_use_case.dart';
+import 'package:run_bus/features/domain/usecase/version/has_upades_updades_use_case.dart';
+import 'package:run_bus/features/domain/usecase/version/take_last_version.dart';
+import 'package:run_bus/features/domain/usecase/version/updade_data_use_case.dart';
 import 'package:run_bus/features/presentation/find_bus_controller.dart';
 import 'package:run_bus/features/presentation/find_bus_page.dart';
 
 void main() async {
   HttpOverrides.global = new MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-      MyApp()..db = await $FloorAppDatabase.inMemoryDatabaseBuilder().build());
+  runApp(MyApp()
+    ..db = await $FloorAppDatabase.databaseBuilder('app_database.db').build());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +39,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var httpAdapterImpl = HttpAdapterImpl(
       client: http.Client(),
+    );
+
+    var versionRepository = VersionRepository(
+      iVersion: VersionApi(
+        iHttp: httpAdapterImpl,
+      ),
+    );
+
+    var versionDatabaseRepository = VersionDatabaseRepository(
+      iVersionDatabase: VersionDatabase(db: db),
     );
 
     return MaterialApp(
@@ -66,16 +78,18 @@ class MyApp extends StatelessWidget {
               ),
               iLocationVerifyAdapter: LocationVerifyAdapter(),
             ),
-            updadeDataOnInitUseCase: UpdadeDataOnInitUseCase(
-              dbRepository: VersionDatabaseRepository(
-                iVersionDatabase: VersionDatabase(db: db),
-              ),
-              apiRepository: VersionRepository(
-                iVersion: VersionApi(
-                  iHttp: httpAdapterImpl,
-                ),
+            updadeDataOnInitUseCase: UpdadeDataUseCase(
+              apiRepository: versionRepository,
+              dbRepository: versionDatabaseRepository,
+              hasUpadesUpdades: HasUpadesUpdadesUseCase(
+                  apiRepository: versionRepository,
+                  dbRepository: versionDatabaseRepository),
+              takeLastVersion: TakeLastVersionUseCase(
+                apiRepository: versionDatabaseRepository,
               ),
             ),
+            // updadeDataOnInitUseCase: UpdadeDataUseCase(
+            // ),
           );
         },
         child: FindBusPage(),

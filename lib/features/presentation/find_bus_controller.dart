@@ -7,12 +7,12 @@ import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/entites/location_user.dart';
-import 'package:run_bus/features/domain/usecase/current_location_user_use_case.dart';
-import 'package:run_bus/features/domain/usecase/updade_data_on_init_use_case.dart';
+import 'package:run_bus/features/domain/usecase/location/current_location_user_use_case.dart';
+import 'package:run_bus/features/domain/usecase/version/updade_data_use_case.dart';
 
 class FindBusController extends ChangeNotifier {
   final CurrentLocationUserUseCase currentLocationUserUseCase;
-  final UpdadeDataOnInitUseCase updadeDataOnInitUseCase;
+  final UpdadeDataUseCase updadeDataOnInitUseCase;
 
   UserLocation userLocation =
       UserLocation(district: "", location: Location(latitude: 0, longitude: 0));

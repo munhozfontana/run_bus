@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 import 'package:run_bus/features/data/external/adapters/abs_version.dart';
+import 'package:run_bus/features/data/models/version_model.dart';
 
 class VersionApi implements IVersion {
   final IHttp? iHttp;
@@ -11,11 +10,11 @@ class VersionApi implements IVersion {
   });
 
   @override
-  Future<int?> lastVersion() async {
+  Future<VersionModel?> lastVersion() async {
     try {
       var res = await iHttp!
           .getHttp('https://www.sistemas.dftrans.df.gov.br/carga/ultima');
-      return json.decode(res.body!)['data'];
+      return VersionModel.fromJson(res.body!);
     } catch (e) {
       throw ApiException();
     }

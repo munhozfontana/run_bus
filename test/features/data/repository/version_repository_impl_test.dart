@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/features/data/external/adapters/abs_version.dart';
+import 'package:run_bus/features/data/models/version_model.dart';
 import 'package:run_bus/features/data/repository/version_repository_impl.dart';
 
 import 'version_repository_impl_test.mocks.dart';
@@ -17,7 +18,8 @@ void main() {
     versionRepository = VersionRepository(iVersion: mockIVersion);
   });
   test('Sould return Version with no erros', () async {
-    when(mockIVersion!.lastVersion()).thenAnswer((_) async => 1615433770891);
+    when(mockIVersion!.lastVersion())
+        .thenAnswer((_) async => VersionModel(createAtMillis: 1615433770891));
     var res = await versionRepository.lastVersion();
     expect(res, isA<Right>());
   });

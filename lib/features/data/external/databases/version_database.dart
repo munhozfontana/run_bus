@@ -10,7 +10,7 @@ class VersionDatabase implements IVersionDatabase {
   VersionDatabase({required this.db});
 
   @override
-  Future<int?> lastVersion() async {
+  Future<VersionModel?> lastVersion() async {
     var res;
     try {
       res = await db!.versionDao.selectLastVersion();
@@ -20,7 +20,7 @@ class VersionDatabase implements IVersionDatabase {
     if (res.isEmpty) {
       throw DatabaseValueNotFoundException();
     }
-    return res.map((item) => item!.id).first;
+    return res.map((item) => item).first;
   }
 
   @override

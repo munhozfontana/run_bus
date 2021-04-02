@@ -2,30 +2,34 @@
 // in run_bus/test/features/data/repository/version_repository_database_impl_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:run_bus/features/data/external/adapters/abs_version.dart'
-    as _i2;
+    as _i3;
+import 'package:run_bus/features/data/models/version_model.dart' as _i2;
 
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
+class _FakeVersionModel extends _i1.Fake implements _i2.VersionModel {}
+
 /// A class which mocks [IVersionDatabase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIVersionDatabase extends _i1.Mock implements _i2.IVersionDatabase {
+class MockIVersionDatabase extends _i1.Mock implements _i3.IVersionDatabase {
   MockIVersionDatabase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> saveVersion(int? version) =>
+  _i4.Future<void> saveVersion(int? version) =>
       (super.noSuchMethod(Invocation.method(#saveVersion, [version]),
           returnValue: Future.value(null),
-          returnValueForMissingStub: Future.value()) as _i3.Future<void>);
+          returnValueForMissingStub: Future.value()) as _i4.Future<void>);
   @override
-  _i3.Future<int?> lastVersion() =>
+  _i4.Future<_i2.VersionModel?> lastVersion() =>
       (super.noSuchMethod(Invocation.method(#lastVersion, []),
-          returnValue: Future.value(0)) as _i3.Future<int?>);
+              returnValue: Future.value(_FakeVersionModel()))
+          as _i4.Future<_i2.VersionModel?>);
 }
