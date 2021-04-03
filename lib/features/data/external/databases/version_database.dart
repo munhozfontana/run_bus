@@ -20,7 +20,7 @@ class VersionDatabase implements IVersionDatabase {
     if (res.isEmpty) {
       throw DatabaseValueNotFoundException();
     }
-    return res.map((item) => item).first;
+    return res.map((item) => item).last;
   }
 
   @override

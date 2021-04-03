@@ -48,7 +48,11 @@ class FindBusController extends ChangeNotifier {
     });
   }
 
-  initData() {
-    updadeDataOnInitUseCase(Params());
+  initData() async {
+    var res = await updadeDataOnInitUseCase(Params());
+    res.fold(
+      (l) => null,
+      print,
+    );
   }
 }

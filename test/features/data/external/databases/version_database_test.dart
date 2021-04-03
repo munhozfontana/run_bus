@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:run_bus/core/error/database_exception.dart';
 import 'package:run_bus/features/data/external/databases/floor_database_config/app_database.dart';
 import 'package:run_bus/features/data/external/databases/version_database.dart';
+import 'package:run_bus/features/data/models/version_model.dart';
 
 void main() {
   VersionDatabase? versionDatabase;
@@ -14,10 +15,10 @@ void main() {
     );
   });
 
-  void insertValue() {
+  void insertValue({sequencial = 3}) {
     floor!.database.insert('VersionModel', {
       'createAtMillis': DateTime.now().millisecondsSinceEpoch,
-      'sequencial': 3
+      'sequencial': sequencial
     });
   }
 
@@ -43,6 +44,17 @@ void main() {
       throwsA(
         isA<DatabaseDbClashException>(),
       ),
+    );
+  });
+
+  test('should return last version of several', () async {
+    insertValue(sequencial: 1);
+    insertValue(sequencial: 2);
+    insertValue(sequencial: 3);
+    var res = await versionDatabase!.lastVersion();
+    expect(
+      res,
+      equals(VersionModel(sequencial: 3, id: 3)),
     );
   });
 
