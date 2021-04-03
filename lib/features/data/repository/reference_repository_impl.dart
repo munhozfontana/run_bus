@@ -16,7 +16,7 @@ class ReferenceRepository implements IReferenceRepository {
     try {
       return Right(await iReferenceApi!.findReferenceByDistrict(district));
     } on ApiException catch (e) {
-      return Left(ServerFailure(detail: e.error));
+      return Left(AppFailure(detail: e.error));
     }
   }
 }

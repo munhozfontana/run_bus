@@ -13,7 +13,7 @@ class VersionRepository implements IVersionRepository {
     try {
       return Right(await iVersion!.lastVersion());
     } catch (e) {
-      return Left(ServerFailure());
+      return Left(AppFailure());
     }
   }
 }

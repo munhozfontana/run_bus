@@ -21,7 +21,7 @@ class LocationRepository implements ILocationRepository {
         ),
       );
     } on DriverException catch (e) {
-      return Left(ServerFailure(detail: e.error));
+      return Left(AppFailure(detail: e.error));
     }
   }
 }

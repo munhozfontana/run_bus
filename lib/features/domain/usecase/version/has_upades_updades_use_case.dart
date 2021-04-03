@@ -6,7 +6,7 @@ import 'package:run_bus/core/params/params.dart';
 import 'package:run_bus/features/domain/repositories/version_repository.dart';
 
 abstract class UseCase<Type, Params> {
-  Future<Either<Failure, bool?>> call(Params params);
+  Future<Tuple3<Failure?, bool?, int?>> call(Params params);
 }
 
 class HasUpadesUpdadesUseCase implements UseCase<Type, Params> {
@@ -19,17 +19,23 @@ class HasUpadesUpdadesUseCase implements UseCase<Type, Params> {
   });
 
   @override
-  Future<Either<Failure, bool?>> call(Params params) async {
-    return (await apiRepository.lastVersion()).fold(
-      (fail) => Left(fail),
+  Future<Tuple3<Failure?, bool, int?>> call(Params params) async {
+    return await (await apiRepository.lastVersion()).fold(
+      (fail) => Tuple3(fail, false, null),
       (resApi) async {
         return (await dbRepository.lastVersion()).fold(
-          (fail) => Left(fail),
+          (fail) async {
+            if (fail is ValueNotFoundFailure) {
+              return Tuple3(null, true, 0);
+            } else {
+              return Tuple3(fail, false, null);
+            }
+          },
           (resDb) async {
             if (resApi!.sequencial! > resDb!.sequencial!) {
-              return Right(true);
+              return Tuple3(null, true, resApi.sequencial);
             } else {
-              return Right(false);
+              return Tuple3(null, false, resApi.sequencial);
             }
           },
         );

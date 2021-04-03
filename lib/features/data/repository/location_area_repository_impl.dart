@@ -15,7 +15,7 @@ class LocationAreaRepository implements ILocationAreaRepository {
     try {
       return Right(await iLocationAreaApi!.findLocationArea());
     } on ApiException catch (e) {
-      return Left(ServerFailure(detail: e.error));
+      return Left(AppFailure(detail: e.error));
     }
   }
 }

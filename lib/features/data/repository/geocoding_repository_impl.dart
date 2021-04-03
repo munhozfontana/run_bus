@@ -15,7 +15,7 @@ class GeocodingRepository implements IGeocodingRepository {
       var res = await iGeocodingAdapter!.coordToAndress(lng, lon);
       return Right(res.district);
     } on DriverException catch (e) {
-      return Left(ServerFailure(detail: e.error));
+      return Left(AppFailure(detail: e.error));
     }
   }
 }
