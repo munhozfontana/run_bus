@@ -23,8 +23,9 @@ void main() {
     mockIVersionRepository = MockIVersionRepository();
     mockIVersionDatabaseRepository = MockIVersionDatabaseRepository();
     hasUpadesUpdadesUseCase = HasUpadesUpdadesUseCase(
-        apiRepository: mockIVersionRepository!,
-        dbRepository: mockIVersionDatabaseRepository!);
+      apiRepository: mockIVersionRepository!,
+      dbRepository: mockIVersionDatabaseRepository!,
+    );
   });
   mockLastVersion(Either<Failure, Version?> value) {
     when(mockIVersionRepository!.lastVersion()).thenAnswer((_) async => value);

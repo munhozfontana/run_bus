@@ -44,7 +44,8 @@ class _FindBusPageState extends State<FindBusPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Provider.of<FindBusController>(context, listen: false)..initData();
+          Provider.of<FindBusController>(context, listen: false)
+            ..initData(context);
         },
         child: Icon(Icons.add),
       ),

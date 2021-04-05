@@ -48,11 +48,36 @@ class FindBusController extends ChangeNotifier {
     });
   }
 
-  initData() async {
+  initData(BuildContext context) async {
     var res = await updadeDataOnInitUseCase(Params());
     res.fold(
       (l) => null,
-      print,
+      (right) {
+        _snackShow(
+          context,
+          text: 'Versão atual $right',
+          onPressed: () {
+            print('Elo');
+          },
+        );
+      },
     );
+  }
+
+  void _snackShow(
+    BuildContext context, {
+    text = 'Yay! A SnackBar!',
+    label = 'Undo',
+    onPressed,
+  }) {
+    final snackBar = SnackBar(
+      content: Text(text),
+      action: SnackBarAction(
+        label: label,
+        onPressed: onPressed,
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
