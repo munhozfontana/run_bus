@@ -1,0 +1,16 @@
+#Stage 1 - Install dependencies and build the app
+FROM cirrusci/flutter:stable
+
+RUN apt-get update -qq -y
+RUN apt-get install lcov -y
+RUN sudo apt-get install -y libsqlite3-dev
+
+WORKDIR  /usr/local/app
+
+COPY . .
+
+RUN ./help_testes.sh run_bus
+RUN flutter pub get
+RUN flutter analyze --no-pub --no-current-package lib
+RUN flutter test --coverage
+RUN curl -s https://codecov.io/bash

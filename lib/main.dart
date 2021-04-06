@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               iGeocodingRepository: GeocodingRepository(
-                iGeocodingAdapter: GeocodingAdapter(),
+                iGeocodingAdapter: GeocodingAdapter(
+                  geocodingAdapterHelper: GeocodingAdapterHelper(),
+                ),
               ),
               iLocationRepository: LocationRepository(
                 locationAdapter: LocationAdapter(),

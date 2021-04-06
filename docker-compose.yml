@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+  test:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.test
+    # env_file:
+    #   - .env
+    volumes:
+      - ./coverage/html:/result/
+    command: >
+      bash -c "apt-get update -qq -y &&
+      apt-get install lcov -y && 
+      genhtml /usr/local/app/coverage/lcov.info -o /result"
+  # web:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./Dockerfile.web
+  #   ports:
+  #     - 80:80
+  #   env_file:
+  #     - .env
+  #   depends_on: 
+  #     - test
+  # ngrok:
+  #   image: wernight/ngrok:latest
+  #   ports:
+  #     - 4040:4040
+  #   links:
+  #     - web
+  #   depends_on: 
+  #     - web
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - NGROK_LOOK_DOMAIN=web
+    
+
+    
