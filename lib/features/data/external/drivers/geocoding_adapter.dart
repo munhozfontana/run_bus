@@ -22,6 +22,6 @@ class GeocodingAdapter implements IGeocoding {
 }
 
 class GeocodingAdapterHelper {
-  getFromCoords(double? lng, double? lon) =>
+  Future<List<Placemark>> getFromCoords(double? lng, double? lon) =>
       placemarkFromCoordinates(lng!, lon!);
 }
