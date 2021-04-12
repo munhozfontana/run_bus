@@ -8,7 +8,7 @@ import '../../../../fixtures/fixture_reader.dart';
 import 'reference_api_test.mocks.dart';
 
 void main() {
-  late LocationAreaApi areaIntegrationApi;
+  LocationAreaApi? areaIntegrationApi;
   IHttp? mockIHttp;
 
   setUp(() {
@@ -27,7 +27,7 @@ void main() {
         );
       });
 
-      var res = await areaIntegrationApi.findLocationArea();
+      var res = await areaIntegrationApi!.findLocationArea();
 
       expect(res, isNotNull);
     });
@@ -36,7 +36,7 @@ void main() {
       when(mockIHttp!.getHttp(any, headers: anyNamed('headers')))
           .thenThrow(Exception());
 
-      var res = areaIntegrationApi.findLocationArea();
+      var res = areaIntegrationApi!.findLocationArea();
 
       expect(res, throwsA(isA<ApiException>()));
     });

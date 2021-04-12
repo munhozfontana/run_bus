@@ -12,8 +12,8 @@ import 'location_repository_impl_test.mocks.dart';
 @GenerateMocks([LocationAdapter])
 void main() {
   late LocationRepository location;
-  LocationAdapter? mockLocationManager;
-  Future<LocationResponse>? tResponseFromApi;
+  late LocationAdapter mockLocationManager;
+  late Future<LocationResponse> tResponseFromApi;
 
   setUp(() {
     tResponseFromApi = Future.value(
@@ -21,19 +21,18 @@ void main() {
     );
     mockLocationManager = MockLocationAdapter();
     location = LocationRepository(
-      locationAdapter: mockLocationManager,
+      driver: mockLocationManager,
     );
   });
 
   test('should capture current location with no erros', () async {
-    when(mockLocationManager!.getCurrentPosition())
-        .thenAnswer(((_) => tResponseFromApi!));
+    when(mockLocationManager.getCurrentPosition())
+        .thenAnswer(((_) => tResponseFromApi));
     expect(await location.getCurrentLocation(), isA<Right>());
   });
 
   test('should throw error DriverException', () async {
-    when(mockLocationManager!.getCurrentPosition())
-        .thenThrow(DriverException());
+    when(mockLocationManager.getCurrentPosition()).thenThrow(DriverException());
     expect(await location.getCurrentLocation(), isA<Left>());
   });
 }

@@ -1,0 +1,257 @@
+[
+    {
+        "sequencial": 12,
+        "descricao": "Águas Claras",
+        "prefixo": null
+    },
+    {
+        "sequencial": 33,
+        "descricao": "Arapoangas",
+        "prefixo": null
+    },
+    {
+        "sequencial": 43,
+        "descricao": "Areal",
+        "prefixo": null
+    },
+    {
+        "sequencial": 44,
+        "descricao": "Arniqueiras",
+        "prefixo": null
+    },
+    {
+        "sequencial": 24,
+        "descricao": "Asa Norte",
+        "prefixo": null
+    },
+    {
+        "sequencial": 26,
+        "descricao": "Asa Sul ",
+        "prefixo": null
+    },
+    {
+        "sequencial": 1,
+        "descricao": "Brazlândia",
+        "prefixo": null
+    },
+    {
+        "sequencial": 20,
+        "descricao": "Candangolândia",
+        "prefixo": null
+    },
+    {
+        "sequencial": 14,
+        "descricao": "Ceilândia",
+        "prefixo": null
+    },
+    {
+        "sequencial": 42,
+        "descricao": "Cidade do Automóvel",
+        "prefixo": null
+    },
+    {
+        "sequencial": 11,
+        "descricao": "Cidade Estrutural",
+        "prefixo": null
+    },
+    {
+        "sequencial": 22,
+        "descricao": "Cruzeiro",
+        "prefixo": null
+    },
+    {
+        "sequencial": 36,
+        "descricao": "Estância",
+        "prefixo": null
+    },
+    {
+        "sequencial": 10,
+        "descricao": "Gama",
+        "prefixo": null
+    },
+    {
+        "sequencial": 38,
+        "descricao": "Grande Colorado",
+        "prefixo": null
+    },
+    {
+        "sequencial": 21,
+        "descricao": "Guará",
+        "prefixo": null
+    },
+    {
+        "sequencial": 6,
+        "descricao": "Itapoã",
+        "prefixo": null
+    },
+    {
+        "sequencial": 30,
+        "descricao": "Jardim Botânico",
+        "prefixo": null
+    },
+    {
+        "sequencial": 45,
+        "descricao": "Jardins Mangueiral",
+        "prefixo": null
+    },
+    {
+        "sequencial": 5,
+        "descricao": "Lago Norte",
+        "prefixo": null
+    },
+    {
+        "sequencial": 8,
+        "descricao": "Lago Sul",
+        "prefixo": null
+    },
+    {
+        "sequencial": 37,
+        "descricao": "Mestre d'Armas",
+        "prefixo": null
+    },
+    {
+        "sequencial": 32,
+        "descricao": "Noroeste",
+        "prefixo": null
+    },
+    {
+        "sequencial": 19,
+        "descricao": "Núcleo Bandeirante",
+        "prefixo": null
+    },
+    {
+        "sequencial": 7,
+        "descricao": "Paranoá",
+        "prefixo": null
+    },
+    {
+        "sequencial": 27,
+        "descricao": "Park Way",
+        "prefixo": null
+    },
+    {
+        "sequencial": 2,
+        "descricao": "Planaltina",
+        "prefixo": null
+    },
+    {
+        "sequencial": 25,
+        "descricao": "Plano Piloto",
+        "prefixo": null
+    },
+    {
+        "sequencial": 51,
+        "descricao": "Ponte Alta Norte",
+        "prefixo": null
+    },
+    {
+        "sequencial": 34,
+        "descricao": "Quintas do Amanhecer",
+        "prefixo": null
+    },
+    {
+        "sequencial": 16,
+        "descricao": "Recanto das Emas",
+        "prefixo": null
+    },
+    {
+        "sequencial": 18,
+        "descricao": "Riacho Fundo",
+        "prefixo": null
+    },
+    {
+        "sequencial": 17,
+        "descricao": "Riacho Fundo II",
+        "prefixo": null
+    },
+    {
+        "sequencial": 48,
+        "descricao": "SAAN",
+        "prefixo": null
+    },
+    {
+        "sequencial": 50,
+        "descricao": "SAIN",
+        "prefixo": null
+    },
+    {
+        "sequencial": 15,
+        "descricao": "Samambaia",
+        "prefixo": null
+    },
+    {
+        "sequencial": 9,
+        "descricao": "Santa Maria",
+        "prefixo": null
+    },
+    {
+        "sequencial": 29,
+        "descricao": "São Sebastião",
+        "prefixo": null
+    },
+    {
+        "sequencial": 41,
+        "descricao": "SIA",
+        "prefixo": null
+    },
+    {
+        "sequencial": 52,
+        "descricao": "SIG",
+        "prefixo": null
+    },
+    {
+        "sequencial": 49,
+        "descricao": "SMU",
+        "prefixo": null
+    },
+    {
+        "sequencial": 4,
+        "descricao": "Sobradinho",
+        "prefixo": null
+    },
+    {
+        "sequencial": 3,
+        "descricao": "Sobradinho II",
+        "prefixo": null
+    },
+    {
+        "sequencial": 47,
+        "descricao": "SOF Norte",
+        "prefixo": null
+    },
+    {
+        "sequencial": 46,
+        "descricao": "SOF Sul",
+        "prefixo": null
+    },
+    {
+        "sequencial": 31,
+        "descricao": "Sudoeste",
+        "prefixo": null
+    },
+    {
+        "sequencial": 13,
+        "descricao": "Taguatinga",
+        "prefixo": null
+    },
+    {
+        "sequencial": 35,
+        "descricao": "Vale do Amanhecer",
+        "prefixo": null
+    },
+    {
+        "sequencial": 39,
+        "descricao": "Varjão",
+        "prefixo": null
+    },
+    {
+        "sequencial": 28,
+        "descricao": "Vicente Pires",
+        "prefixo": null
+    },
+    {
+        "sequencial": 40,
+        "descricao": "Vila Planalto ",
+        "prefixo": null
+    }
+]

@@ -2,51 +2,57 @@
 // in run_bus/test/features/domain/usecase/version/updade_data_use_case_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:dartz/dartz.dart' as _i3;
+import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:run_bus/core/error/failures.dart' as _i6;
-import 'package:run_bus/core/params/params.dart' as _i7;
+import 'package:run_bus/core/error/failures.dart' as _i5;
+import 'package:run_bus/features/domain/entites/place.dart' as _i8;
+import 'package:run_bus/features/domain/entites/version.dart' as _i6;
+import 'package:run_bus/features/domain/repositories/places_repository.dart'
+    as _i7;
 import 'package:run_bus/features/domain/repositories/version_repository.dart'
-    as _i2;
-import 'package:run_bus/features/domain/usecase/version/has_upades_updades_use_case.dart'
-    as _i4;
+    as _i3;
 
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeIVersionRepository extends _i1.Fake
-    implements _i2.IVersionRepository {}
+class _FakeEither<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-class _FakeIVersionDatabaseRepository extends _i1.Fake
-    implements _i2.IVersionDatabaseRepository {}
-
-class _FakeTuple3<T1, T2, T3> extends _i1.Fake
-    implements _i3.Tuple3<T1, T2, T3> {}
-
-/// A class which mocks [HasUpadesUpdadesUseCase].
+/// A class which mocks [IVersionRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHasUpadesUpdadesUseCase extends _i1.Mock
-    implements _i4.HasUpadesUpdadesUseCase {
-  MockHasUpadesUpdadesUseCase() {
+class MockIVersionRepository extends _i1.Mock
+    implements _i3.IVersionRepository {
+  MockIVersionRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.IVersionRepository get apiRepository =>
-      (super.noSuchMethod(Invocation.getter(#apiRepository),
-          returnValue: _FakeIVersionRepository()) as _i2.IVersionRepository);
-  @override
-  _i2.IVersionDatabaseRepository get dbRepository =>
-      (super.noSuchMethod(Invocation.getter(#dbRepository),
-              returnValue: _FakeIVersionDatabaseRepository())
-          as _i2.IVersionDatabaseRepository);
-  @override
-  _i5.Future<_i3.Tuple3<_i6.Failure?, bool, int?>> call(_i7.Params? params) =>
-      (super.noSuchMethod(Invocation.method(#call, [params]),
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Version?>> lastVersion() =>
+      (super.noSuchMethod(Invocation.method(#lastVersion, []),
               returnValue:
-                  Future.value(_FakeTuple3<_i6.Failure?, bool, int?>()))
-          as _i5.Future<_i3.Tuple3<_i6.Failure?, bool, int?>>);
+                  Future.value(_FakeEither<_i5.Failure, _i6.Version?>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Version?>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> saveVersion(int? version) =>
+      (super.noSuchMethod(Invocation.method(#saveVersion, [version]),
+              returnValue: Future.value(_FakeEither<_i5.Failure, void>()))
+          as _i4.Future<_i2.Either<_i5.Failure, void>>);
+}
+
+/// A class which mocks [IPlacesRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIPlacesRepository extends _i1.Mock implements _i7.IPlacesRepository {
+  MockIPlacesRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, List<_i8.Place>>> getAllPlaces() =>
+      (super.noSuchMethod(Invocation.method(#getAllPlaces, []),
+              returnValue:
+                  Future.value(_FakeEither<_i5.Failure, List<_i8.Place>>()))
+          as _i4.Future<_i2.Either<_i5.Failure, List<_i8.Place>>>);
 }

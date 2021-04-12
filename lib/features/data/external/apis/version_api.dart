@@ -5,6 +5,7 @@ import 'package:run_bus/features/data/models/version_model.dart';
 
 class VersionApi implements IVersion {
   final IHttp? iHttp;
+
   VersionApi({
     required this.iHttp,
   });
@@ -18,5 +19,10 @@ class VersionApi implements IVersion {
     } catch (e) {
       throw ApiException();
     }
+  }
+
+  @override
+  Future<void> saveVersion(int? version) {
+    throw ApiNotExists();
   }
 }

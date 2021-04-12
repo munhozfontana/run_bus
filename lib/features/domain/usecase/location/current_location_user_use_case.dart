@@ -20,14 +20,14 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
   final IGeocodingRepository? iGeocodingRepository;
   final IReferenceRepository? iReferenceRepository;
   final ILocationAreaRepository? iLocationAreaRepository;
-  final ILocationVerifyAdapter? iLocationVerifyAdapter;
+  final ILocationVerifyAdapter? driver;
 
   CurrentLocationUserUseCase({
     required this.iLocationRepository,
     required this.iGeocodingRepository,
     required this.iReferenceRepository,
     required this.iLocationAreaRepository,
-    required this.iLocationVerifyAdapter,
+    required this.driver,
   });
 
   @override

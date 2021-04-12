@@ -4,66 +4,59 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/core/params/params.dart';
+import 'package:run_bus/features/domain/repositories/places_repository.dart';
 import 'package:run_bus/features/domain/repositories/version_repository.dart';
-import 'package:run_bus/features/domain/usecase/version/has_upades_updades_use_case.dart';
 import 'package:run_bus/features/domain/usecase/version/updade_data_use_case.dart';
 
-import 'has_upades_updades_use_case_test.mocks.dart';
 import 'updade_data_use_case_test.mocks.dart';
 
-@GenerateMocks([HasUpadesUpdadesUseCase])
+@GenerateMocks([
+  IVersionRepository,
+  IPlacesRepository,
+])
 void main() {
   UpdadeDataUseCase? updadeDataUseCase;
   IVersionRepository? mockIVersionRepository;
-  IVersionDatabaseRepository? mockIVersionDatabaseRepository;
-  HasUpadesUpdadesUseCase? mockHasUpadesUpdadesUseCase;
+  IPlacesRepository? mockIPlacesRepository;
 
   setUp(() {
     mockIVersionRepository = MockIVersionRepository();
-    mockIVersionDatabaseRepository = MockIVersionDatabaseRepository();
-    mockHasUpadesUpdadesUseCase = MockHasUpadesUpdadesUseCase();
+    mockIPlacesRepository = MockIPlacesRepository();
     updadeDataUseCase = UpdadeDataUseCase(
-      apiRepository: mockIVersionRepository!,
-      dbRepository: mockIVersionDatabaseRepository!,
-      hasUpadesUpdades: mockHasUpadesUpdadesUseCase!,
-    );
+        iVersionRepository: mockIVersionRepository!,
+        iPlacesRepository: mockIPlacesRepository!);
   });
 
-  test('should return failure when value1 is not null', () async {
-    when(mockHasUpadesUpdadesUseCase!(Params()))
-        .thenAnswer((_) async => Tuple3(AppFailure(), false, null));
-    expect(await updadeDataUseCase!(Params()), isA<Left>());
-  });
+  void makeIPlacesRepository(Either<Failure, List<num>> value) {
+    // when(mockIPlacesRepository!.getAllPlaces()).thenAnswer((_) async => value);
+  }
 
   test(
-      'should call _saveOnDatabase db when value1 is not null and value2 is true',
-      () async {
-    when(mockHasUpadesUpdadesUseCase!(Params()))
-        .thenAnswer((_) async => Tuple3(null, true, 3));
-    when(mockIVersionDatabaseRepository!.saveVersion(any))
-        .thenAnswer((_) async => Right(3));
-    await updadeDataUseCase!(Params());
-    verify(await mockIVersionDatabaseRepository!.saveVersion(3)).called(1);
-  });
+    'should call _saveOnDatabase db when value1 is not null and value2 is true',
+    () async {
+      makeIPlacesRepository(Right([1, 2]));
+      await updadeDataUseCase!(Params());
+    },
+  );
   test('should return Right when value1 is not null and value2 is true',
       () async {
-    when(mockHasUpadesUpdadesUseCase!(Params()))
-        .thenAnswer((_) async => Tuple3(null, true, 3));
-    when(mockIVersionDatabaseRepository!.saveVersion(any))
-        .thenAnswer((_) async => Right(3));
+    makeIPlacesRepository(Right([1, 2]));
     expect(await updadeDataUseCase!(Params()), isA<Right>());
-  });
+  }, skip: true);
   test('should return Left(ValueNotPersisted) when saveVersion fail', () async {
-    when(mockHasUpadesUpdadesUseCase!(Params()))
-        .thenAnswer((_) async => Tuple3(null, true, 3));
-    when(mockIVersionDatabaseRepository!.saveVersion(any))
-        .thenAnswer((_) async => Left(AppFailure()));
+    makeIPlacesRepository(Right([1, 2]));
     expect(await updadeDataUseCase!(Params()), isA<Left>());
   });
 
-  test('should return right when value2 is false', () async {
-    when(mockHasUpadesUpdadesUseCase!(Params()))
-        .thenAnswer((_) async => Tuple3(null, false, 3));
-    expect(await updadeDataUseCase!(Params()), isA<Right>());
-  });
+  group('when arrive _saveOnDatase', () {
+    test('should return right when value2 is false', () async {
+      makeIPlacesRepository(Right([1, 2]));
+      expect(await updadeDataUseCase!(Params()), isA<Right>());
+    });
+
+    test('should save places', () async {
+      makeIPlacesRepository(Right([1, 2]));
+      expect(await updadeDataUseCase!(Params()), isA<Right>());
+    });
+  }, skip: true);
 }

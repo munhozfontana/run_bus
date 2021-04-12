@@ -21,10 +21,19 @@ class ValueNotFoundFailure extends Failure {
   List<Object?> get props => [detail];
 }
 
-class ValueNotPersisted extends Failure {
+class ValueNotPersistedFailure extends Failure {
   final String? detail;
 
-  ValueNotPersisted({this.detail});
+  ValueNotPersistedFailure({this.detail});
+
+  @override
+  List<Object?> get props => [detail];
+}
+
+class NotImplementedFailure extends Failure {
+  final String? detail;
+
+  NotImplementedFailure({this.detail});
 
   @override
   List<Object?> get props => [detail];

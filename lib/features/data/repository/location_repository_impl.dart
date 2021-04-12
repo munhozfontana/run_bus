@@ -6,14 +6,16 @@ import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/repositories/location_repository.dart';
 
 class LocationRepository implements ILocationRepository {
-  final ILocation? locationAdapter;
+  final ILocation? driver;
 
-  LocationRepository({this.locationAdapter});
+  LocationRepository({
+    this.driver,
+  });
 
   @override
   Future<Either<Failure, Location>> getCurrentLocation() async {
     try {
-      var res = await locationAdapter!.getCurrentPosition();
+      var res = await driver!.getCurrentPosition();
       return Right(
         Location(
           latitude: res.latitude,

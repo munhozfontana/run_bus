@@ -15,7 +15,7 @@ void main() {
   setUp(() {
     mockIGeocodingAdapter = MockIGeocoding();
     geocodingRepository = GeocodingRepository(
-      iGeocodingAdapter: mockIGeocodingAdapter,
+      driver: mockIGeocodingAdapter,
     );
   });
 

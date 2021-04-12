@@ -16,7 +16,7 @@ void main() {
   setUp(() {
     mockHttpAdapter = MockIHttp();
     areaIntegrationApi = ReferenceApi(
-      httpAdapter: mockHttpAdapter,
+      iHttp: mockHttpAdapter,
     );
   });
 

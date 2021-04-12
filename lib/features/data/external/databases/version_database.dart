@@ -4,7 +4,7 @@ import 'package:run_bus/features/data/external/adapters/abs_version.dart';
 import 'package:run_bus/features/data/external/databases/floor_database_config/app_database.dart';
 import 'package:run_bus/features/data/models/version_model.dart';
 
-class VersionDatabase implements IVersionDatabase {
+class VersionDatabase implements IVersion {
   final AppDatabase? db;
 
   VersionDatabase({required this.db});

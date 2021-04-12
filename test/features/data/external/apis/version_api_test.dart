@@ -29,7 +29,7 @@ void main() {
         ));
   });
 
-  test('should thows ApiException when thows any erros', () {
+  test('should throws ApiException when thows any erros', () {
     when(mockIHttp!.getHttp(any)).thenThrow(Exception);
     expect(versionApi.lastVersion(), throwsA(isA<ApiException>()));
   });
