@@ -4,22 +4,22 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/features/data/external/adapters/abs_location.dart';
-import 'package:run_bus/features/data/external/drivers/location_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/location_driver.dart';
 import 'package:run_bus/features/data/repository/location_repository_impl.dart';
 
 import 'location_repository_impl_test.mocks.dart';
 
-@GenerateMocks([LocationAdapter])
+@GenerateMocks([LocationDriver])
 void main() {
   late LocationRepository location;
-  late LocationAdapter mockLocationManager;
+  late LocationDriver mockLocationManager;
   late Future<LocationResponse> tResponseFromApi;
 
   setUp(() {
     tResponseFromApi = Future.value(
       LocationResponse(latitude: 15.31513, longitude: -13.5513),
     );
-    mockLocationManager = MockLocationAdapter();
+    mockLocationManager = MockLocationDriver();
     location = LocationRepository(
       driver: mockLocationManager,
     );

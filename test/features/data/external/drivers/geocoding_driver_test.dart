@@ -3,19 +3,19 @@ import 'package:geocoding/geocoding.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
-import 'package:run_bus/features/data/external/drivers/geocoding_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/geocoding_driver.dart';
 
-import 'geocoding_adapter_test.mocks.dart';
+import 'geocoding_driver_test.mocks.dart';
 
 @GenerateMocks([GeocodingAdapterHelper])
 void main() {
   MockGeocodingAdapterHelper? mockGeocodingAdapterHelper;
-  GeocodingAdapter? geocodingAdapter;
+  GeocodingDriver? geocodingAdapter;
 
   setUp(() {
     mockGeocodingAdapterHelper = MockGeocodingAdapterHelper();
     geocodingAdapter =
-        GeocodingAdapter(geocodingAdapterHelper: mockGeocodingAdapterHelper!);
+        GeocodingDriver(geocodingAdapterHelper: mockGeocodingAdapterHelper!);
   });
 
   test(

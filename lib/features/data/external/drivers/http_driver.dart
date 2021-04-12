@@ -3,10 +3,10 @@ import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/messages/api_mensages.dart';
 import 'package:run_bus/features/data/external/adapters/abs_http.dart';
 
-class HttpAdapterImpl implements IHttp {
+class HttpDriver implements IHttp {
   final http.Client? client;
 
-  HttpAdapterImpl({required this.client});
+  HttpDriver({required this.client});
 
   @override
   Future<HttpResponse> deleteHttp(String? url,

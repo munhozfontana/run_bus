@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:run_bus/core/error/failures.dart';
 import 'package:run_bus/core/params/params.dart';
-import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/location_verify_driver.dart';
 import 'package:run_bus/features/domain/entites/location_area.dart';
 import 'package:run_bus/features/domain/entites/location_user.dart';
 import 'package:run_bus/features/domain/repositories/geocoding_repository.dart';
@@ -20,7 +20,7 @@ class CurrentLocationUserUseCase implements UseCase<Type, Params> {
   final IGeocodingRepository? iGeocodingRepository;
   final IReferenceRepository? iReferenceRepository;
   final ILocationAreaRepository? iLocationAreaRepository;
-  final ILocationVerifyAdapter? driver;
+  final ILocationVerifyDriver? driver;
 
   CurrentLocationUserUseCase({
     required this.iLocationRepository,

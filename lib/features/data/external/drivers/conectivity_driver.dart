@@ -2,10 +2,10 @@ import 'package:connectivity/connectivity.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
 import 'package:run_bus/features/data/external/adapters/abs_connectivity_adapter.dart';
 
-class ConnectivityAdapterImpl implements IConnectivity {
+class ConnectivityDriver implements IConnectivity {
   final Connectivity? connectivity;
 
-  ConnectivityAdapterImpl({
+  ConnectivityDriver({
     this.connectivity,
   });
 

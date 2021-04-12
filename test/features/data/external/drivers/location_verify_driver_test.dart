@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:run_bus/core/error/driver_exception.dart';
-import 'package:run_bus/features/data/external/drivers/location_verify_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/location_verify_driver.dart';
 import 'package:run_bus/features/domain/entites/location.dart';
 import 'package:run_bus/features/domain/entites/location_area.dart';
 

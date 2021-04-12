@@ -1,24 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:run_bus/core/error/api_exception.dart';
 import 'package:run_bus/core/error/failures.dart';
+import 'package:run_bus/features/data/external/adapters/abs_connectivity_adapter.dart';
 import 'package:run_bus/features/data/external/adapters/abs_version.dart';
 import 'package:run_bus/features/data/models/version_model.dart';
-import 'package:run_bus/features/data/repository/utils_repository_impl.dart';
 import 'package:run_bus/features/domain/repositories/version_repository.dart';
 
 class VersionRepository implements IVersionRepository {
   final IVersion? api;
   final IVersion? db;
-  final UtilsRepositoryImpl? utilsRepository;
+  final IConnectivity? iConnectivity;
 
   VersionRepository({
+    this.iConnectivity,
     required this.api,
     required this.db,
-    required this.utilsRepository,
   });
 
   Future<Either<Failure, VersionModel?>> lastVersion() async {
-    if (await utilsRepository!.internetCheck()) {
+    if (await iConnectivity!.isConnected()) {
       try {
         return Right(await api!.lastVersion());
       } on ApiException catch (_) {

@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:run_bus/features/data/external/adapters/abs_location.dart'
     as _i2;
-import 'package:run_bus/features/data/external/drivers/location_adapter.dart'
+import 'package:run_bus/features/data/external/drivers/location_driver.dart'
     as _i3;
 
 // ignore_for_file: comment_references
@@ -15,11 +15,11 @@ import 'package:run_bus/features/data/external/drivers/location_adapter.dart'
 
 class _FakeLocationResponse extends _i1.Fake implements _i2.LocationResponse {}
 
-/// A class which mocks [LocationAdapter].
+/// A class which mocks [LocationDriver].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocationAdapter extends _i1.Mock implements _i3.LocationAdapter {
-  MockLocationAdapter() {
+class MockLocationDriver extends _i1.Mock implements _i3.LocationDriver {
+  MockLocationDriver() {
     _i1.throwOnMissingStub(this);
   }
 

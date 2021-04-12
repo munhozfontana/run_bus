@@ -3,13 +3,13 @@ import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:run_bus/core/error/api_exception.dart';
-import 'package:run_bus/features/data/external/drivers/http_adapter.dart';
+import 'package:run_bus/features/data/external/drivers/http_driver.dart';
 
-import 'http_adapter_test.mocks.dart';
+import 'http_driver_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
-  late HttpAdapterImpl httpAdapterImpl;
+  late HttpDriver httpAdapterImpl;
   http.Client? client;
   http.Response? anyResponse;
   //PARAMS
@@ -20,7 +20,7 @@ void main() {
 
   setUp(() {
     client = MockClient();
-    httpAdapterImpl = HttpAdapterImpl(client: client);
+    httpAdapterImpl = HttpDriver(client: client);
     anyBody = {'any_param': 'anyValue'}.toString();
     anyStatusCode = 200;
     anyUrl = 'ANY_URL';
